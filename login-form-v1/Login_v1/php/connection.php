@@ -1,3 +1,3 @@
 <?php
-$con = new PDO("mysql:host=localhost;dbname=gestion_biblio", "root", "");
+    $con = new PDO("mysql:host=localhost;dbname=gestion_biblio", "root", "");
 ?>
