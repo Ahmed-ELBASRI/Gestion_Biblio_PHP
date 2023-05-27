@@ -1,15 +1,5 @@
-<!-- <?php
-// session_start();
-// if (isset($_SESSION["login"])) {
-// 	$login = $_SESSION["login"];
-// 	require("connection.php");
-// 	$stmt=$con->prepare("select * from PERSONNE where email like :email");
-// 	$stmt = $stmt->execute(array(":email", $login));
-// 	if($stmt==null){
-// 		header("location : login-form-v1/Login_v1/index.php");
-// 	}
-// }
-?> -->
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,9 +82,9 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="index.html">Home</a>
+								<a href="index.php">Home</a>
 								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
+									<li><a href="index.php">Homepage 1</a></li>
 									<li><a href="home-02.html">Homepage 2</a></li>
 									<li><a href="home-03.html">Homepage 3</a></li>
 								</ul>
@@ -144,7 +134,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.php"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -203,9 +193,9 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="index.php">Home</a>
 					<ul class="sub-menu-m">
-						<li><a href="index.html">Homepage 1</a></li>
+						<li><a href="index.php">Homepage 1</a></li>
 						<li><a href="home-02.html">Homepage 2</a></li>
 						<li><a href="home-03.html">Homepage 3</a></li>
 					</ul>
