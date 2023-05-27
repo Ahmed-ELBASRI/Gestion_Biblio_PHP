@@ -1,3 +1,15 @@
+<!-- <?php
+// session_start();
+// if (isset($_SESSION["login"])) {
+// 	$login = $_SESSION["login"];
+// 	require("connection.php");
+// 	$stmt=$con->prepare("select * from PERSONNE where email like :email");
+// 	$stmt = $stmt->execute(array(":email", $login));
+// 	if($stmt==null){
+// 		header("location : login-form-v1/Login_v1/index.php");
+// 	}
+// }
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
