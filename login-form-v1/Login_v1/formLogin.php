@@ -1,3 +1,27 @@
+<?php
+// echo "hello";
+if (isset($_POST["email"])) {
+	$email = $_POST["email"];
+	$pass = $_POST["pass"];
+	if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($pass)) {
+		$pass = md5($pass);
+		$query = "select * from PERSONNE where email like :email and password like :pass";
+		require("php/connection.php");
+		$stmt = $con->prepare($query);
+		$stmt->execute(array(":email" => $email, ":pass" => $pass));
+		$data = $stmt->fetch();
+		print_r($data);
+		if (!empty($data)) {
+			header("location: ../../index.php");
+			exit();
+		}
+		echo "hello";
+		header("location: formLogin.php");
+		exit();
+	}
+}
+// header("location: formLogin.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +55,7 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="php/login.php" method="post">
+				<form class="login100-form validate-form" action="#" method="post">
 					<span class="login100-form-title">
 						Member Login
 					</span>
@@ -82,7 +106,7 @@
 
 
 	<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
