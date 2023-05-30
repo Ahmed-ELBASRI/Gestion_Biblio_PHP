@@ -1,4 +1,9 @@
 <?php
+	session_start();
+	if(!isset($_SESSION["email"])){
+		header("location: login-form-v1/login_v1/formLogin.php");
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,6 +89,9 @@
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
 					<i class="zmdi zmdi-favorite-outline"></i>
 				</div>
+				<div>
+					<a href="login-form-v1/login_v1/php/logout.php">logout</a>
+				</div>
 					</div>
 				</nav>
 			</div>	
@@ -105,6 +113,7 @@
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
 					<i class="zmdi zmdi-favorite-outline"></i>
 				</div>
+
 			</div>
 
 			<!-- Button show menu -->
