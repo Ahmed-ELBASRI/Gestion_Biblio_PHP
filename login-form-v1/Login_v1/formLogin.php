@@ -1,17 +1,24 @@
 <?php
 // echo "hello";
+session_start();
+if(isset($_SESSION["email"])){
+	header("location: ../../index.php");
+}
 if (isset($_POST["email"])) {
 	$email = $_POST["email"];
 	$pass = $_POST["pass"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($pass)) {
 		$pass = md5($pass);
-		$query = "select * from PERSONNE where email like :email and password like :pass";
+		$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";
 		require("php/connection.php");
 		$stmt = $con->prepare($query);
 		$stmt->execute(array(":email" => $email, ":pass" => $pass));
 		$data = $stmt->fetch();
-		print_r($data);
+		// print_r($data);
 		if (!empty($data)) {
+			$_SESSION["email"]=$email;
+			$_SESSION["role"]=$data["libelle"];
+			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();
 		}
@@ -20,7 +27,6 @@ if (isset($_POST["email"])) {
 		exit();
 	}
 }
-// header("location: formLogin.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

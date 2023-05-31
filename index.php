@@ -72,6 +72,20 @@
 							<li>
 								<a href="contact.html">Contact</a>
 							</li>
+							<!-- display dashboard link  for admin  --> 
+							<?php
+								session_start();
+								if(isset($_SESSION["role"])){
+									$role=$_SESSION["role"];
+									if($role=='admin'){
+										?>
+										<li>
+								<a href="dashboard/public/index.html">dashboard</a>
+							</li> 
+							<?php
+									}
+								}
+							 ?>
 						</ul>
 					</div>	
 
