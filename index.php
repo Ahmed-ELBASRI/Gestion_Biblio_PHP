@@ -1539,37 +1539,68 @@
 <!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-addwish-b2').on('click', function(e){
+				$('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
 			e.preventDefault();
 		});
 
-		$('.js-addwish-b2').each(function(){
+		$('.js-addwish-b2').each(function () {
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+			var isAdded = false;
 
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
+			$(this).on('click', function () {
+				if (isAdded) {
+					// Remove from wishlist
+					swal(nameProduct, "is removed from the wishlist!", "success");
+
+					$(this).removeClass('js-addedwish-b2');
+					isAdded = false;
+				} else {
+					// Add to wishlist
+					swal(nameProduct, "is added to the wishlist!", "success");
+
+					$(this).addClass('js-addedwish-b2');
+					isAdded = true;
+				}
 			});
 		});
 
-		$('.js-addwish-detail').each(function(){
+		$('.js-addwish-detail').each(function () {
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+			var isAdded = false;
 
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+			$(this).on('click', function () {
+				if (isAdded) {
+					// Remove from wishlist
+					swal(nameProduct, "is removed from the wishlist!", "success");
 
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
+					$(this).removeClass('js-addedwish-detail');
+					isAdded = false;
+				} else {
+					// Add to wishlist
+					swal(nameProduct, "is added to the wishlist!", "success");
+
+					$(this).addClass('js-addedwish-detail');
+					isAdded = true;
+				}
 			});
 		});
 
 		/*---------------------------------------------*/
 
-		$('.js-addcart-detail').each(function(){
+		$('.js-addcart-detail').each(function () {
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+			var isAdded = false;
+
+			$(this).on('click', function () {
+				if (isAdded) {
+					// Remove from cart
+					swal(nameProduct, "is removed from the cart!", "success");
+					isAdded = false;
+				} else {
+					// Add to cart
+					swal(nameProduct, "is added to the cart!", "success");
+					isAdded = true;
+				}
 			});
 		});
 	

@@ -954,12 +954,22 @@ $data = $result->fetchAll();
 
 		$('.js-addwish-detail').each(function () {
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+			var isAdded = false;
 
 			$(this).on('click', function () {
-				swal(nameProduct, "is added to wishlist  !", "success");
+				if (isAdded) {
+					// Remove from wishlist
+					swal(nameProduct, "is removed from the wishlist!", "success");
 
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
+					$(this).removeClass('js-addedwish-detail');
+					isAdded = false;
+				} else {
+					// Add to wishlist
+					swal(nameProduct, "is added to the wishlist!", "success");
+
+					$(this).addClass('js-addedwish-detail');
+					isAdded = true;
+				}
 			});
 		});
 
@@ -967,8 +977,18 @@ $data = $result->fetchAll();
 
 		$('.js-addcart-detail').each(function () {
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var isAdded = false;
+
 			$(this).on('click', function () {
-				swal(nameProduct, "is added to cart !", "success");
+				if (isAdded) {
+					// Remove from cart
+					swal(nameProduct, "is removed from the cart!", "success");
+					isAdded = false;
+				} else {
+					// Add to cart
+					swal(nameProduct, "is added to the cart!", "success");
+					isAdded = true;
+				}
 			});
 		});
 
