@@ -18,6 +18,7 @@ if (isset($_POST["email"])) {
 		if (!empty($data)) {
 			$_SESSION["email"]=$email;
 			$_SESSION["role"]=$data["libelle"];
+			$_SESSION["newsletter"]=$data["newsletter"];
 			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();
