@@ -1,9 +1,7 @@
 <?php
-	session_start();
-	if(!isset($_SESSION["email"])){
-		header("location: login-form-v1/login_v1/formLogin.php");
-		exit();
-	}
+
+		require_once "VerficationAuth.php";
+		//print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +75,20 @@
 							<li>
 								<a href="contact.html">Contact</a>
 							</li>
+							<!-- display dashboard link  for admin  --> 
+							<?php
+								
+								if(isset($_SESSION["role"])){
+									$role=$_SESSION["role"];
+									if($role=='admin'){
+										?>
+										<li>
+								<a href="dashboard/public/index.php">dashboard</a>
+							</li> 
+							<?php
+									}
+								}
+							 ?>
 						</ul>
 					</div>	
 
@@ -1272,11 +1284,11 @@
 					</p>
 
 					<div class="p-t-27">
-						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16" target="_blank">
 							<i class="fa fa-instagram"></i>
 						</a>
 					</div>
@@ -1287,17 +1299,30 @@
 						Newsletter
 					</h4>
 
-					<form>
+					<form action="AddToNewsletter.php" method="get">
 						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com" value=<?php 
+
+								//	session_open();
+									$email=$_SESSION["email"];
+										echo "$email";
+						?>>
 							<div class="focus-input1 trans-04"></div>
 						</div>
 
 						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
+							<input type="submit"  class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04"
+								value="<?php
+									if($_SESSION["newsletter"]==1){
+										echo "UNSUBSCRIBE";
+									}
+									else {
+										echo "SUBSCRIBE";
+									}
+								?>" 
+							/>
 						</div>
+						
 					</form>
 				</div>
 			</div>

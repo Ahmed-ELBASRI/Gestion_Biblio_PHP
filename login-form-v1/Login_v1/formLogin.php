@@ -4,20 +4,27 @@ session_start();
 if(isset($_SESSION["email"])){
 	header("location: ../../index.php");
 }
+session_start();
+if(isset($_SESSION["email"])){
+	header("location: ../../index.php");
+}
 if (isset($_POST["email"])) {
 	$email = $_POST["email"];
 	$pass = $_POST["pass"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($pass)) {
 		$pass = md5($pass);
 		$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";
+		$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";
 		require("php/connection.php");
 		$stmt = $con->prepare($query);
 		$stmt->execute(array(":email" => $email, ":pass" => $pass));
 		$data = $stmt->fetch();
 		// print_r($data);
+		// print_r($data);
 		if (!empty($data)) {
 			$_SESSION["email"]=$email;
 			$_SESSION["role"]=$data["libelle"];
+			$_SESSION["newsletter"]=$data["newsletter"];
 			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();
