@@ -10,7 +10,6 @@ if (isset($_POST["email"])) {
 	if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($pass)) {
 		$pass = md5($pass);
 		$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";
-		$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";
 		require("php/connection.php");
 		$stmt = $con->prepare($query);
 		$stmt->execute(array(":email" => $email, ":pass" => $pass));
