@@ -42,6 +42,7 @@ $data = $result->fetchAll();
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
+	<link rel="stylesheet" href="css/annotation.css">
 </head>
 
 <body class="animsition">
@@ -72,7 +73,7 @@ $data = $result->fetchAll();
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="shoping-cart.php">Features</a>
 							</li>
 
 							<li>
@@ -90,16 +91,18 @@ $data = $result->fetchAll();
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
-
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-							data-notify="2">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
-
-						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti js-show-cart"
 							data-notify="0">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
+						<div class="p-l-15">
+							<div class="image-container">
+								<a href="login-form-v1/Login_v1/php/logout.php">
+									<img src="images/exit.png" alt="" class="annotated-image">
+									<div class="annotation ">Logout</div>
+								</a>
+							</div>
+						</div>
 					</div>
 				</nav>
 			</div>
@@ -158,7 +161,7 @@ $data = $result->fetchAll();
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shoping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
 
 
@@ -261,12 +264,12 @@ $data = $result->fetchAll();
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html"
+						<a href="shoping-cart.php"
 							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							View Cart
 						</a>
 
-						<a href="shoping-cart.html"
+						<a href="shoping-cart.php"
 							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Check Out
 						</a>

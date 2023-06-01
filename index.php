@@ -1,53 +1,56 @@
 <?php
-		require("VerficationAuth.php");
+require("VerficationAuth.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<link rel="stylesheet" href="css/annotation.css">
 </head>
+
 <body class="animsition">
-	
+
 	<!-- Header -->
 	<header>
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<div class="wrap-menu-desktop">
 				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
+
+					<!-- Logo desktop -->
 					<a href="index.php" class="logo">
 						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
@@ -63,52 +66,57 @@
 								<a href="product.php">Shop</a>
 							</li>
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="shoping-cart.php">Features</a>
 							</li>
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
-							<!-- display dashboard link  for admin  --> 
+							<!-- display dashboard link  for admin  -->
 							<?php
-								
-								if(isset($_SESSION["role"])){
-									$role=$_SESSION["role"];
-									if($role=='admin'){
-										?>
-										<li>
-								<a href="dashboard/public/index.php">dashboard</a>
-							</li> 
-							<?php
-									}
+
+							if (isset($_SESSION["role"])) {
+								$role = $_SESSION["role"];
+								if ($role == 'admin') {
+									?>
+									<li>
+										<a href="dashboard/public/index.php">dashboard</a>
+									</li>
+									<?php
 								}
-							 ?>
+							}
+							?>
 						</ul>
-					</div>	
+					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
-
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</div>
-				<div>
-					<a href="login-form-v1/login_v1/php/logout.php">logout</a>
-				</div>
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+							data-notify="2">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</div>
+						<div class="p-l-15">
+							<div class="image-container">
+								<a href="login-form-v1/Login_v1/php/logout.php">
+									<img src="images/exit.png" alt="" class="annotated-image">
+									<div class="annotation ">Logout</div>
+								</a>
+							</div>
+						</div>
 					</div>
 				</nav>
-			</div>	
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="index.php"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
@@ -119,7 +127,8 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+					data-notify="2">
 					<i class="zmdi zmdi-favorite-outline"></i>
 				</div>
 
@@ -192,7 +201,7 @@
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
+
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
@@ -243,18 +252,20 @@
 						</div>
 					</li>
 				</ul>
-				
+
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
 						Total: $75.00
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+						<a href="shoping-cart.html"
+							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							View Cart
 						</a>
 
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+						<a href="shoping-cart.html"
+							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Check Out
 						</a>
 					</div>
@@ -263,7 +274,7 @@
 		</div>
 	</div>
 
-		
+
 
 	<!-- Slider -->
 	<section class="section-slide">
@@ -277,15 +288,16 @@
 									Women Collection 2018
 								</span>
 							</div>
-								
+
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
 									NEW SEASON
 								</h2>
 							</div>
-								
+
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="product.php"
+									class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
@@ -301,15 +313,17 @@
 									Men New-Season
 								</span>
 							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
+
+							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn"
+								data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
 									Jackets & Coats
 								</h2>
 							</div>
-								
+
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="product.php"
+									class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
@@ -320,20 +334,23 @@
 				<div class="item-slick1" style="background-image: url(images/slide-03.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
+							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft"
+								data-delay="0">
 								<span class="ltext-101 cl2 respon2">
 									Men Collection 2018
 								</span>
 							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
+
+							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight"
+								data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
 									New arrivals
 								</h2>
 							</div>
-								
+
 							<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-								<a href="product.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="product.php"
+									class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
@@ -354,7 +371,8 @@
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner-01.jpg" alt="IMG-BANNER">
 
-						<a href="product.php" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a href="product.php"
+							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Women
@@ -379,7 +397,8 @@
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner-02.jpg" alt="IMG-BANNER">
 
-						<a href="product.php" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a href="product.php"
+							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Men
@@ -404,7 +423,8 @@
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner-03.jpg" alt="IMG-BANNER">
 
-						<a href="product.php" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a href="product.php"
+							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Accessories
@@ -465,10 +485,11 @@
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+					<div
+						class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Filter
+						Filter
 					</div>
 
 					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
@@ -477,7 +498,7 @@
 						Search
 					</div>
 				</div>
-				
+
 				<!-- Search product -->
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
@@ -485,8 +506,9 @@
 							<i class="zmdi zmdi-search"></i>
 						</button>
 
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-					</div>	
+						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product"
+							placeholder="Search">
+					</div>
 				</div>
 
 				<!-- Filter -->
@@ -654,23 +676,28 @@
 							</div>
 
 							<div class="flex-w p-t-4 m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+								<a href="#"
+									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 									Fashion
 								</a>
 
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+								<a href="#"
+									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 									Lifestyle
 								</a>
 
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+								<a href="#"
+									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 									Denim
 								</a>
 
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+								<a href="#"
+									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 									Streetstyle
 								</a>
 
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+								<a href="#"
+									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 									Crafts
 								</a>
 							</div>
@@ -686,7 +713,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-01.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -704,8 +732,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -718,7 +748,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-02.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -736,8 +767,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -750,7 +783,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-03.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -768,8 +802,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -782,7 +818,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-04.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -800,8 +837,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -814,7 +853,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-05.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -832,8 +872,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -846,7 +888,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-06.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -854,7 +897,7 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Vintage Inspired Classic 
+									Vintage Inspired Classic
 								</a>
 
 								<span class="stext-105 cl3">
@@ -864,8 +907,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -878,7 +923,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-07.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -896,8 +942,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -910,7 +958,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-08.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -928,8 +977,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -942,7 +993,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-09.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -960,8 +1012,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -974,7 +1028,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-10.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -992,8 +1047,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1006,7 +1063,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-11.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -1014,7 +1072,7 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Herschel supply 
+									Herschel supply
 								</a>
 
 								<span class="stext-105 cl3">
@@ -1024,8 +1082,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1038,7 +1098,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-12.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -1056,8 +1117,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1070,7 +1133,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-13.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -1088,8 +1152,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1102,7 +1168,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-14.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -1120,8 +1187,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1134,7 +1203,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-15.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -1152,8 +1222,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1166,7 +1238,8 @@
 						<div class="block2-pic hov-img0">
 							<img src="images/product-16.jpg" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -1184,8 +1257,10 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+										alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+										src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1253,7 +1328,7 @@
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns 
+								Returns
 							</a>
 						</li>
 
@@ -1281,11 +1356,13 @@
 					</p>
 
 					<div class="p-t-27">
-						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR" target="_blank"
+							class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16" target="_blank">
+						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"
+							target="_blank">
 							<i class="fa fa-instagram"></i>
 						</a>
 					</div>
@@ -1298,35 +1375,34 @@
 
 					<form action="AddToNewsletter.php" method="get">
 						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com" value=<?php 
+							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
+								placeholder="email@example.com" value=<?php
 
 								//	session_open();
-									$email=$_SESSION["email"];
-										echo "$email";
-						?>>
+								$email = $_SESSION["email"];
+								echo "$email";
+								?>>
 							<div class="focus-input1 trans-04"></div>
 						</div>
 
 						<div class="p-t-18">
-							<input type="submit"  class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04"
-								value="<?php
-									if($_SESSION["newsletter"]==1){
-										echo "UNSUBSCRIBE";
-									}
-									else {
-										echo "SUBSCRIBE";
-									}
-								?>" 
-							/>
+							<input type="submit"
+								class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04" value="<?php
+								if ($_SESSION["newsletter"] == 1) {
+									echo "UNSUBSCRIBE";
+								} else {
+									echo "SUBSCRIBE";
+								}
+								?>" />
 						</div>
-						
+
 					</form>
 				</div>
 			</div>
-				<p class="stext-107 cl6 txt-center">
+			<p class="stext-107 cl6 txt-center">
 				© Copyrights 2023 EHEI. All Rights Reserved.
-				</p>
-			</div>
+			</p>
+		</div>
 		</div>
 	</footer>
 
@@ -1360,7 +1436,8 @@
 										<div class="wrap-pic-w pos-relative">
 											<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -1370,7 +1447,8 @@
 										<div class="wrap-pic-w pos-relative">
 											<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="images/product-detail-02.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -1380,7 +1458,8 @@
 										<div class="wrap-pic-w pos-relative">
 											<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="images/product-detail-03.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -1389,7 +1468,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
 							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
@@ -1401,9 +1480,10 @@
 							</span>
 
 							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat
+								ornare feugiat.
 							</p>
-							
+
 							<!--  -->
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
@@ -1451,37 +1531,44 @@
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+											<input class="mtext-104 cl3 txt-center num-product" type="number"
+												name="num-product" value="1">
 
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										<button
+											class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 											Add to cart
 										</button>
 									</div>
-								</div>	
+								</div>
 							</div>
 
 							<!--  -->
 							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+									<a href="#"
+										class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
+										data-tooltip="Add to Wishlist">
 										<i class="zmdi zmdi-favorite"></i>
 									</a>
 								</div>
 
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Facebook">
 									<i class="fa fa-facebook"></i>
 								</a>
 
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Twitter">
 									<i class="fa fa-twitter"></i>
 								</a>
 
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Google Plus">
 									<i class="fa fa-google-plus"></i>
 								</a>
 							</div>
@@ -1492,54 +1579,54 @@
 		</div>
 	</div>
 
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 	<script>
-		$(".js-select2").each(function(){
+		$(".js-select2").each(function () {
 			$(this).select2({
 				minimumResultsForSearch: 20,
 				dropdownParent: $(this).next('.dropDownSelect2')
 			});
 		})
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/daterangepicker/moment.min.js"></script>
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/slick/slick.min.js"></script>
 	<script src="js/slick-custom.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/parallax100/parallax100.js"></script>
 	<script>
-        $('.parallax100').parallax100();
+		$('.parallax100').parallax100();
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 	<script>
-		$('.gallery-lb').each(function() { // the containers for all your galleries
+		$('.gallery-lb').each(function () { // the containers for all your galleries
 			$(this).magnificPopup({
-		        delegate: 'a', // the selector for gallery item
-		        type: 'image',
-		        gallery: {
-		        	enabled:true
-		        },
-		        mainClass: 'mfp-fade'
-		    });
+				delegate: 'a', // the selector for gallery item
+				type: 'image',
+				gallery: {
+					enabled: true
+				},
+				mainClass: 'mfp-fade'
+			});
 		});
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-				$('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
 			e.preventDefault();
 		});
 
@@ -1603,27 +1690,28 @@
 				}
 			});
 		});
-	
+
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
+		$('.js-pscroll').each(function () {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
 			var ps = new PerfectScrollbar(this, {
 				wheelSpeed: 1,
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
 
-			$(window).on('resize', function(){
+			$(window).on('resize', function () {
 				ps.update();
 			})
 		});
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
 </body>
+
 </html>
