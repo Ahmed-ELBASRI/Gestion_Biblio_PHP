@@ -1,0 +1,23 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.annotation {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, );
+    color: #6c7ae0;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.annotated-image:hover+.annotation {
+    opacity: 1;
+    visibility: visible;
+}
