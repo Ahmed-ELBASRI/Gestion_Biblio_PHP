@@ -1,7 +1,5 @@
 <?php
-
-		require_once "VerficationAuth.php";
-		//print_r($_SESSION);
+		require("VerficationAuth.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

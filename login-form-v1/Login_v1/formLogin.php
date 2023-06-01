@@ -1,12 +1,8 @@
 <?php
-// echo "hello";
 session_start();
 if(isset($_SESSION["email"])){
 	header("location: ../../index.php");
-}
-session_start();
-if(isset($_SESSION["email"])){
-	header("location: ../../index.php");
+	exit();
 }
 if (isset($_POST["email"])) {
 	$email = $_POST["email"];
