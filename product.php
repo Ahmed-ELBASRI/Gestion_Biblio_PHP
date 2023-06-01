@@ -282,11 +282,31 @@ $data = $result->fetchAll();
 		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+
+				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
+					<?php 
+						require_once "login-form-v1/Login_v1/php/connection.php";
+						$query="select * from categorie";
+						$Stm=$con->query($query);
+						$data1=$Stm->fetchAll(PDO::FETCH_ASSOC);
+						//print_r($data1);
+						//$data=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+						if(!empty($data1)){
+
+								for($i=0;$i<count($data1);$i++){
+									?>
+									<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".<?= $data1[$i]["LIBELLE_CATEGORIE"]?>">
+										<?= $data1[$i]["LIBELLE_CATEGORIE"]?>
+									</button> <?php
+								}
+						}
+					?>
+					
+
+				<!--	<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
 						Women
 					</button>
 
@@ -305,6 +325,7 @@ $data = $result->fetchAll();
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
 						Watches
 					</button>
+					-->
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
