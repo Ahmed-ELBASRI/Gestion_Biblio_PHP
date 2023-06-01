@@ -547,7 +547,8 @@ $data = $result->fetchAll();
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.php?id=<?=$data[$i]["ID_LIVRE"]?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php?id=<?= $data[$i]["ID_LIVRE"] ?>"
+										class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										<?= $data[$i]["TITRE"] ?>
 									</a>
 
@@ -558,7 +559,7 @@ $data = $result->fetchAll();
 
 								<div class="block2-txt-child2 flex-r p-t-3">
 									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-next.png"
+										<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
 											alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l"
 											src="images/icons/icon-heart-02.png" alt="ICON">
@@ -932,11 +933,22 @@ $data = $result->fetchAll();
 
 		$('.js-addwish-b2').each(function () {
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function () {
-				swal(nameProduct, "is added to wishlist !", "success");
+			var isAdded = false;
 
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
+			$(this).on('click', function () {
+				if (isAdded) {
+					// Remove from wishlist
+					swal(nameProduct, "is removed from the wishlist!", "success");
+
+					$(this).removeClass('js-addedwish-b2');
+					isAdded = false;
+				} else {
+					// Add to wishlist
+					swal(nameProduct, "is added to the wishlist!", "success");
+
+					$(this).addClass('js-addedwish-b2');
+					isAdded = true;
+				}
 			});
 		});
 
@@ -944,7 +956,7 @@ $data = $result->fetchAll();
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
 			$(this).on('click', function () {
-				swal(nameProduct, "is added to wishlist !", "success");
+				swal(nameProduct, "is added to wishlist  !", "success");
 
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
