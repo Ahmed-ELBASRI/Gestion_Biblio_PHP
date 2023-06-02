@@ -38,7 +38,7 @@
     // add to table ReserverLivre
 
 
-    $query="insert into Reserverlivre values(:idLivre,:ID_PERSONNE,:dateReservation)";
+    $query="insert into reserverlivre(ID_LIVRE,ID_PERSONNE,DATERESERVATION) values(:idLivre,:ID_PERSONNE,:dateReservation)";
     $statement=$con->prepare($query);
     $statement->execute(array("idLivre"=>$idLivre,"ID_PERSONNE"=>$ID_PERSONNE,"dateReservation"=>$dateReservation));
 
