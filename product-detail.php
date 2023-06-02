@@ -2,10 +2,15 @@
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
 $id = $_GET["id"];
-$query = "select * from livre l inner join rediger r on l.ID_LIVRE = r.ID_LIVRE where l.ID_LIVRE = :id";
+$query = "select * from livre where ID_LIVRE = :id";
+
 $stmt = $con->prepare($query);
 $stmt->execute(array(":id" => $id));
 $data = $stmt->fetch();
+$query1 = "select * from rediger r inner join auteur a on r.ID_AUTEUR=a.ID_AUTEUR where r.ID_LIVRE = :id";
+$stmt = $con->prepare($query1);
+$stmt->execute(array(":id" => $id));
+$data1 = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -518,7 +523,13 @@ $data = $stmt->fetch();
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												
+												<?php
+													for($i=0;$i<count($data1);$i++){
+														?>
+													 	<?=$data1[$i]['NOM_AUTEUR'].","?>
+													<?php
+													}
+												?>
 											</span>
 										</li>
 									</ul>
