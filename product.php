@@ -558,7 +558,14 @@ $data = $result->fetchAll();
 				<?php
 				for ($i = 0; $i < count($data); $i++) {
 					?>
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php 
+							for($j=0;$j<count($data1);$j++){
+								if($data1[$j]["ID_CATEGORIE"]==$data[$i]["ID_CATEGORIE"]){
+									echo $data1[$j]["LIBELLE_CATEGORIE"];
+									break;
+								}
+							}
+					?>">
 						<div class="block2">
 							<div class="block2-pic hov-img0">
 								<img src="<?= $data[$i]["COUVERTURE"] ?>" alt="IMG-PRODUCT">
