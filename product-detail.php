@@ -375,13 +375,42 @@ $data1 = $stmt->fetchAll();
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
-									<button
+									<button 
 										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										Reserver
+										<a href="ReserverLivre.php?id=<?=$_GET['id']?>"style="color: inherit; text-decoration: none;" id="ReserverLink">Reserver</a>
 									</button>
 								</div>
 							</div>
 						</div>
+						<?php
+
+							if(isset($_SESSION["livreReserver"])){
+								?>
+														<script>
+							var link = document.getElementById("ReserverLink");
+							link.addEventListener("click", function(event) {
+								event.preventDefault();
+								swal( "you have already a reservation ");
+							});
+							</script>
+						<?php	}
+							else{
+
+								?>
+
+								<script>
+								var link = document.getElementById("ReserverLink");
+								link.addEventListener("click", function(event) {
+									
+								});
+								</script>
+								
+
+						<?php	} ?>
+						
+
+
+						
 
 						<!--  -->
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">

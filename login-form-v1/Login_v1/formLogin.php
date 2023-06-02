@@ -20,6 +20,7 @@ if (isset($_POST["email"])) {
 			$_SESSION["email"]=$email;
 			$_SESSION["role"]=$data["libelle"];
 			$_SESSION["newsletter"]=$data["newsletter"];
+			$_SESSION["ID_PERSONNE"]=$data["ID_PERSONNE"];
 			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();
