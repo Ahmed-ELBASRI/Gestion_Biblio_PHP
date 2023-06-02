@@ -2,7 +2,7 @@
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
 $id = $_GET["id"];
-$query = "select * from livre where ID_LIVRE = :id";
+$query = "select * from livre l inner join rediger r on l.ID_LIVRE = r.ID_LIVRE where l.ID_LIVRE = :id";
 $stmt = $con->prepare($query);
 $stmt->execute(array(":id" => $id));
 $data = $stmt->fetch();
@@ -482,14 +482,7 @@ $data = $stmt->fetch();
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla
-									sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit
-									lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim,
-									cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum
-									in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor
-									sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec
-									laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras
-									in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+									<?=$data["DESCRIPTION"]?>
 								</p>
 							</div>
 						</div>
@@ -501,51 +494,31 @@ $data = $stmt->fetch();
 									<ul class="p-lr-28 p-lr-15-sm">
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Weight
+												Pages
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												0.79 kg
+											<?=$data["NOMBREPAGE"]?>
 											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Dimensions
+												Date Publication
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												110 x 33 x 100 cm
+											<?=$data["ANNEEPUBLICATION"]?>
 											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Materials
+												Auteur
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												60% cotton
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Color
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												Black, Blue, Grey, Green, Red, White
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Size
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												XL, L, M, S
+												
 											</span>
 										</li>
 									</ul>
@@ -964,7 +937,130 @@ $data = $stmt->fetch();
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
-		<div class="container">
+				<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Categories
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Women
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Men
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Shoes
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Watches
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Help
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Track Order
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Returns
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Shipping
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								FAQs
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						GET IN TOUCH
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						Any questions? Let us know in store at Rue de la liberté – Hay Al Hikma–Oujda–Maroc
+					</p>
+
+					<div class="p-t-27">
+						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR" target="_blank"
+							class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"
+							target="_blank">
+							<i class="fa fa-instagram"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Newsletter
+					</h4>
+
+					<form action="AddToNewsletter.php" method="get">
+						<div class="wrap-input1 w-full p-b-4">
+							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
+								placeholder="email@example.com" value=<?php
+
+								//	session_open();
+								$email = $_SESSION["email"];
+								echo "$email";
+								?>>
+							<div class="focus-input1 trans-04"></div>
+						</div>
+
+						<div class="p-t-18">
+							<input type="submit"
+								class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04" value="<?php
+								if ($_SESSION["newsletter"] == 1) {
+									echo "UNSUBSCRIBE";
+								} else {
+									echo "SUBSCRIBE";
+								}
+								?>" />
+						</div>
+
+					</form>
+				</div>
+			</div>
+			<p class="stext-107 cl6 txt-center">
+				© Copyrights 2023 EHEI. All Rights Reserved.
+			</p>
+		</div>
+		</div>
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
