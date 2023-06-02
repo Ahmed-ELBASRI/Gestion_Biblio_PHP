@@ -100,19 +100,15 @@ $data = $stmt->fetch();
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="shoping-cart.php">Features</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
-							</li>
-
-							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</div>
@@ -218,19 +214,19 @@ $data = $stmt->fetch();
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shoping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
 
 				<li>
-					<a href="blog.html">Blog</a>
+					<a href="blog.php">Blog</a>
 				</li>
 
 				<li>
-					<a href="about.html">About</a>
+					<a href="about.php">About</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contact</a>
+					<a href="contact.php">Contact</a>
 				</li>
 			</ul>
 		</div>
@@ -324,12 +320,12 @@ $data = $stmt->fetch();
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html"
+						<a href="shoping-cart.php"
 							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							View Cart
 						</a>
 
-						<a href="shoping-cart.html"
+						<a href="shoping-cart.php"
 							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Check Out
 						</a>
