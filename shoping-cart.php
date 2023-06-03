@@ -63,12 +63,12 @@ $data = $result->fetchAll();
 								<a href="index.php">Home</a>
 							</li>
 
-							<li>
-								<a href="product.php">Shop</a>
+							<li class="label1" data-label1="New">
+								<a href="product.php">Books</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.php">Features</a>
+							<li>
+								<a href="shoping-cart.php">Wishlist</a>
 							</li>
 
 							<li>
@@ -163,12 +163,12 @@ $data = $result->fetchAll();
 					</span>
 				</li>
 
-				<li>
-					<a href="product.php">Shop</a>
+				<li class="label1" data-label1="New">
+					<a href="product.php">Books</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shoping-cart.php">Wishlist</a>
 				</li>
 
 				<li>
@@ -439,21 +439,18 @@ $data = $result->fetchAll();
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us
-						on (+1) 96 716 6879
+						Any questions? Let us know in store at Rue de la liberté – Hay Al Hikma–Oujda–Maroc
 					</p>
 
 					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR" target="_blank"
+							class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"
+							target="_blank">
 							<i class="fa fa-instagram"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
 						</a>
 					</div>
 				</div>
@@ -489,41 +486,9 @@ $data = $result->fetchAll();
 					</form>
 				</div>
 			</div>
-
-			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
-				</div>
-
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;
-					<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i
-						class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-						target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com"
-						target="_blank">ThemeWagon</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
-				</p>
-			</div>
+			<p class="stext-107 cl6 txt-center">
+				© Copyrights 2023 EHEI. All Rights Reserved.
+			</p>
 		</div>
 	</footer>
 
