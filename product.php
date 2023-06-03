@@ -568,7 +568,7 @@ if(isset($_GET["idLivre"])){
 
 			<div class="row isotope-grid">
 
-				<?php
+			<?php
 				for ($i = 0; $i < count($data); $i++) {
 					?>
 					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php
@@ -583,8 +583,8 @@ if(isset($_GET["idLivre"])){
 							<div class="block2-pic hov-img0">
 								<img src="<?= $data[$i]["COUVERTURE"] ?>" alt="IMG-PRODUCT">
 
-								<a href="#"
-									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+								<a href="product.php?idLivre=<?=$data[$i]["ID_LIVRE"]?>"
+									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 ">
 									Quick View
 								</a>
 							</div>
@@ -616,6 +616,8 @@ if(isset($_GET["idLivre"])){
 					<?php
 				}
 				?>
+
+			</div>
 
 			</div>
 
