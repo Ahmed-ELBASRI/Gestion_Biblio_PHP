@@ -1,5 +1,15 @@
 <?php
 require("VerficationAuth.php");
+require("login-form-v1/login_v1/php/connection.php");
+$query = "SELECT  c.ID_CATEGORIE,c.photoCategorie,COUNT(*) AS total_count
+FROM categorie c
+INNER JOIN livre l ON c.ID_CATEGORIE = l.ID_CATEGORIE
+INNER JOIN reserverlivre r ON l.ID_LIVRE = r.ID_LIVRE
+GROUP BY c.ID_CATEGORIE
+ORDER BY total_count DESC
+LIMIT 3;";
+$result = $con->query($query);
+$data = $result->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -365,27 +375,25 @@ require("VerficationAuth.php");
 	<!-- Banner -->
 	<div class="sec-banner bg0 p-t-80 p-b-50">
 		<div class="container">
+		<div class="p-b-10">
+				<h3 class="ltext-103 cl5 p-b-30">
+					Top Categories
+				</h3>
+			</div>
 			<div class="row">
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-01.jpg" alt="IMG-BANNER">
+						<img src="<?=$data[0]["photoCategorie"]?>" alt="IMG-BANNER">
 
 						<a href="product.php"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Women
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
-									Shop Now
+									RESERVE Now
 								</div>
 							</div>
 						</a>
@@ -395,23 +403,18 @@ require("VerficationAuth.php");
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-02.jpg" alt="IMG-BANNER">
+						<img src="<?=$data[1]["photoCategorie"]?>" alt="IMG-BANNER">
 
 						<a href="product.php"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Men
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
+							</div>
+							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
-									Shop Now
+									RESERVE Now
 								</div>
 							</div>
 						</a>
@@ -421,23 +424,16 @@ require("VerficationAuth.php");
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-03.jpg" alt="IMG-BANNER">
+						<img src="<?=$data[2]["photoCategorie"]?>" alt="IMG-BANNER">
 
 						<a href="product.php"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Accessories
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									New Trend
-								</span>
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
-									Shop Now
+									RESERVER Now
 								</div>
 							</div>
 						</a>
@@ -459,29 +455,28 @@ require("VerficationAuth.php");
 
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
+					<?php
+					$query = "select * from categorie";
+					$Stm = $con->query($query);
+					$data1 = $Stm->fetchAll(PDO::FETCH_ASSOC);
+					//print_r($data1);
+					//$data=$statement->fetchAll(PDO::FETCH_ASSOC);
+					
+					if (!empty($data1)) {
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-						Watches
-					</button>
+						for ($i = 0; $i < count($data1); $i++) {
+							?>
+							<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+								data-filter=".<?= $data1[$i]["LIBELLE_CATEGORIE"] ?>">
+								<?= $data1[$i]["LIBELLE_CATEGORIE"] ?>
+							</button>
+							<?php
+						}
+					}
+					?>
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
