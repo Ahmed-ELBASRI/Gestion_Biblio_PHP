@@ -4,6 +4,21 @@ require("login-form-v1/login_v1/php/connection.php");
 $query = "select * from livre";
 $result = $con->query($query);
 $data = $result->fetchAll();
+
+// 
+
+//add data for livre 
+if(isset($_GET["idLivre"])){
+	$idLivre=$_GET["idLivre"];
+	if(!empty($idLivre)){
+		$query="select * from livre where ID_LIVRE=:idLivre";
+        $statement2=$con->prepare($query);
+        $statement2->execute(array("idLivre"=>$idLivre));
+        $data2=$statement2->fetch(PDO::FETCH_ASSOC);
+		
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -568,8 +583,8 @@ $data = $result->fetchAll();
 							<div class="block2-pic hov-img0">
 								<img src="<?= $data[$i]["COUVERTURE"] ?>" alt="IMG-PRODUCT">
 
-								<a href="#"
-									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+								<a href="product.php?idLivre=<?=$data[$i]["ID_LIVRE"]?>"
+									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 ">
 									Quick View
 								</a>
 							</div>
@@ -775,7 +790,7 @@ $data = $result->fetchAll();
 									<div class="slick3 gallery-lb">
 										<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
 											<div class="wrap-pic-w pos-relative">
-												<img src="<?= $data["DESCRIPTION"] ?>" alt="IMG-PRODUCT">
+												<img src="<?= $data2["COUVERTURE"] ?>" alt="IMG-PRODUCT">
 												<!-- 
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
 											<i class="fa fa-expand"></i>
@@ -810,16 +825,16 @@ $data = $result->fetchAll();
 						<div class="col-md-6 col-lg-5 p-b-30">
 							<div class="p-r-50 p-t-5 p-lr-0-lg">
 								<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-									<?= $data["TITRE"] ?>
-
+									<?= $data2["TITRE"] ?>
+									
 								</h4>
 
 								<span class="mtext-106 cl2">
-									<?= $data["PRIX"] ?>
+									<?= $data2["PRIX"] ?>
 								</span>
 
 								<p class="stext-102 cl3 p-t-23">
-									<?= $data["DESCRIPTION"] ?>
+									<?= $data2["DESCRIPTION"] ?>
 								</p>
 
 								<!--  -->
