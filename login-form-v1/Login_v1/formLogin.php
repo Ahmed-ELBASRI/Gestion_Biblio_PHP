@@ -9,23 +9,36 @@ if (isset($_POST["email"])) {
 	$pass = $_POST["pass"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($pass)) {
 		$pass = md5($pass);
-		$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";
+		$query="SELECT p.*, s.libelle, e.DATERESERVATION
+		FROM statut s
+		INNER JOIN personne p ON s.id = p.id_statue
+		LEFT JOIN reserverlivre e ON p.ID_PERSONNE = e.ID_PERSONNE
+		WHERE p.email LIKE :email AND p.password LIKE :pass";
+		/*$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";*/
 		require("php/connection.php");
 		$stmt = $con->prepare($query);
 		$stmt->execute(array(":email" => $email, ":pass" => $pass));
-		$data = $stmt->fetch();
+		$data = $stmt->fetch(PDO::FETCH_ASSOC);
+		 print_r($data);
 		// print_r($data);
-		// print_r($data);
+		
 		if (!empty($data)) {
 			$_SESSION["email"]=$email;
 			$_SESSION["role"]=$data["libelle"];
 			$_SESSION["newsletter"]=$data["newsletter"];
 			$_SESSION["ID_PERSONNE"]=$data["ID_PERSONNE"];
+			if(empty($data["DATERESERVATION"])){
+				$_SESSION["livreReserver"]=0;
+			}
+			else{
+				$_SESSION["livreReserver"]=1;
+			}
+
 			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();
 		}
-		echo "hello";
+		
 		header("location: formLogin.php");
 		exit();
 	}
