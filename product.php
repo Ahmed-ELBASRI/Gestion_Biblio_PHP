@@ -7,11 +7,7 @@ $data = $result->fetchAll();
 
 // 
 // get all data from wishlist table 
-$ID_PERSONNE=$_SESSION["ID_PERSONNE"];
-$query="select * from favorie where ID_PERSONNE=:ID_PERSONNE";
-        $statement3=$con->prepare($query);
-        $statement3->execute(array("ID_PERSONNE"=>$ID_PERSONNE));
-        $data3=$statement3->fetchAll(PDO::FETCH_ASSOC);
+
 		//print_r($data3);
 //
 
@@ -965,16 +961,62 @@ if(isset($_GET["idLivre"])){
 					}
 				}
 				}
-
+				//$(this).addClass('js-addedwish-b2');
 				// check is the heart is checked in bd
-				<?php
-						if(!empty($data3)){
-							for($i=0;$i<count($data3);$i++){
+				var $element = $(this);
+				$.ajax({
+  				url: 'getAllwishlist.php',
+						method: 'GET',
+						dataType: 'json',
+						success: function(response) {
+							// Iterate over the PHP array using JavaScript
+							console.log(response);
+							response.forEach(function(item) {
+								//console.log(item);
+								//console.log(idd);
+								//console.log(item.ID_LIVRE);
+								var idlivre=item.ID_LIVRE;
+								//console.log(idd);
+								//console.log(idlivre);
+								if(idlivre==idd){
+									//console.log("yes");
+									isAdded=true;
+									$element.addClass('js-addedwish-b2');
+									
+									//alert("yes");
+
+								}
+								else{
+									//console.log("no");
+								//	$(this).removeClass('js-addedwish-b2');
+									
+
+								}
+							//	$(this).addClass('js-addedwish-b2');
+								//$(this).addClass('js-addedwish-detail');
+
+
+							/*if(item.ID_LIVRE===idd){
+								$(this).addClass('js-addedwish-b2');
 								
+								console.log("yes");
+								
+
+								
+
 							}
+							else{
+								$(this).removeClass('js-addedwish-b2');
+								console.log("no");
+
+							}*/
+							// Perform any desired operations on each item
+							});
+						},
+						error: function(xhr, status, error) {
+							console.log(xhr.responseText);
 						}
-				?>
-				$(this).addClass('js-addedwish-b2');
+						});
 
 
 				//
