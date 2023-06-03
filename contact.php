@@ -356,7 +356,7 @@
 	</section>
 
 
-	<!-- Map -->
+	<!-- Map iframe-->
 	<div class="map">
 		<div class="size-303" id="google_map" data-map-x="34.702718" data-map-y="-1.946614" data-scrollwhell="0"
 			data-draggable="1" data-zoom="11"></div>

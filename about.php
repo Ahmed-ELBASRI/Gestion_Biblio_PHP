@@ -1,3 +1,6 @@
+<?php
+require("VerficationAuth.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
