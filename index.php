@@ -16,13 +16,25 @@ $result = $con->query($query1);
 $data2 = $result->fetchAll();
 // ----------------------
 $ID_PERSSONE=$_SESSION["ID_PERSONNE"];
-$query2 = "select COUNT(*) from empruntlivre WHERE ID_PERSONNE = :ID_PERSONNE";
+$query2 = "SELECT c.ID_CATEGORIE,COUNT(*) FROM empruntlivre E INNER JOIN livre L 
+ON E.ID_LIVRE = L.ID_LIVRE INNER JOIN categorie C 
+ON L.ID_CATEGORIE = C.ID_CATEGORIE
+where e.ID_PERSONNE = :ID_PERSONNE
+GROUP BY C.ID_CATEGORIE
+ORDER BY COUNT(*) DESC
+LIMIT 1";
 $stmt = $con->prepare("$query2");
 $stmt->execute(array(":ID_PERSONNE"=>$ID_PERSSONE));
 $data3=$stmt->fetch();
 if(!empty($data3)){
 	if(count($data3)>=4){
-		
+		$top_books="SELECT * FROM livre L INNER JOIN categorie C 
+		ON L.ID_CATEGORIE = C.ID_CATEGORIE
+		WHERE L.ID_CATEGORIE = :ID_CATEGORIE
+		LIMIT 10";	
+		$stmt = $con->prepare("$top_books");
+		$stmt->execute(array(":ID_CATEGORIE"=>$data3["ID_CATEGORIE"]));
+		$data4=$stmt->fetchAll();
 	}
 }
 ?>
@@ -719,11 +731,11 @@ if(!empty($data3)){
 
 			<div class="row isotope-grid">
 				<?php
-				for ($i = 0; $i < count($data2); $i++) {
+				for ($i = 0; $i < count($data4); $i++) {
 					?>
 					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php
 					for ($j = 0; $j < count($data1); $j++) {
-						if ($data1[$j]["ID_CATEGORIE"] == $data[$i]["ID_CATEGORIE"]) {
+						if ($data1[$j]["ID_CATEGORIE"] == $data4[$i]["ID_CATEGORIE"]) {
 							echo $data1[$j]["LIBELLE_CATEGORIE"];
 							break;
 						}
@@ -731,9 +743,9 @@ if(!empty($data3)){
 					?>">
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<img src="<?= $data2[$i]["COUVERTURE"] ?>" alt="IMG-PRODUCT">
+								<img src="<?= $data4[$i]["COUVERTURE"] ?>" alt="IMG-PRODUCT">
 
-								<a href="product.php?idLivre=<?= $data2[$i]["ID_LIVRE"] ?>"
+								<a href="product.php?idLivre=<?= $data4[$i]["ID_LIVRE"] ?>"
 									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 ">
 									Quick View
 								</a>
@@ -741,13 +753,13 @@ if(!empty($data3)){
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.php?id=<?= $data2[$i]["ID_LIVRE"] ?>"
+									<a href="product-detail.php?id=<?= $data4[$i]["ID_LIVRE"] ?>"
 										class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										<?= $data2[$i]["TITRE"] ?>
+										<?= $data4[$i]["TITRE"] ?>
 									</a>
 
 									<span class="stext-105 cl3">
-										<?= $data2[$i]["PRIX"] ?>
+										<?= $data4[$i]["PRIX"] ?>
 									</span>
 								</div>
 
