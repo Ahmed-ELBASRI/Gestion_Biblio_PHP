@@ -19,7 +19,7 @@ if (isset($_POST["email"])) {
 		$stmt = $con->prepare($query);
 		$stmt->execute(array(":email" => $email, ":pass" => $pass));
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
-		 print_r($data);
+		// print_r($data);
 		// print_r($data);
 		
 		if (!empty($data)) {
@@ -29,15 +29,19 @@ if (isset($_POST["email"])) {
 			$_SESSION["ID_PERSONNE"]=$data["ID_PERSONNE"];
 			if(empty($data["DATERESERVATION"])){
 				$_SESSION["livreReserver"]=0;
+				
 			}
 			else{
 				$_SESSION["livreReserver"]=1;
+				
 			}
+			
 
 			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();
 		}
+		echo "no data";
 		
 		header("location: formLogin.php");
 		exit();

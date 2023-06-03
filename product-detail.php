@@ -410,15 +410,17 @@ $data4 = $stmt->fetchAll();
 						<?php
 
 						if (isset($_SESSION["livreReserver"])) {
-							?>
-							<script>
-								var link = document.getElementById("ReserverLink");
-								link.addEventListener("click", function (event) {
-									event.preventDefault();
-									swal("you have already a reservation ");
-								});
-							</script>
-						<?php } else {
+							if($_SESSION["livreReserver"]==1){
+								?>
+								<script>
+									var link = document.getElementById("ReserverLink");
+									link.addEventListener("click", function (event) {
+										event.preventDefault();
+										swal("you have already a reservation ");
+									});
+								</script>
+						<?php	}
+						else {
 
 							?>
 
@@ -428,9 +430,11 @@ $data4 = $stmt->fetchAll();
 
 								});
 							</script>
+							
+							<?php	 } 
 
 
-						<?php } ?>
+						 } ?>
 
 
 
