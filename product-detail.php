@@ -649,7 +649,7 @@ $data4 = $stmt->fetchAll();
 		<div class="container">
 			<div class="p-b-45">
 				<h3 class="ltext-106 cl5 txt-center">
-					Related Products
+					Related Books
 				</h3>
 			</div>
 
