@@ -976,17 +976,18 @@ if(isset($_GET["idLivre"])){
 								//console.log(idd);
 								//console.log(item.ID_LIVRE);
 								var idlivre=item.ID_LIVRE;
-								console.log(idd);
-								console.log(idlivre);
+								//console.log(idd);
+								//console.log(idlivre);
 								if(idlivre==idd){
-									console.log("yes");
+									//console.log("yes");
+									isAdded=true;
 									$element.addClass('js-addedwish-b2');
 									
-									alert("yes");
+									//alert("yes");
 
 								}
 								else{
-									console.log("no");
+									//console.log("no");
 								//	$(this).removeClass('js-addedwish-b2');
 									
 
