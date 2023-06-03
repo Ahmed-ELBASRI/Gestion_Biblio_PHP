@@ -109,11 +109,11 @@ if (!empty($data3)) {
 								<a href="index.php">Home</a>
 							</li>
 
-							<li>
-								<a href="product.php">Shop</a>
+							<li class="label1" data-label1="New">
+								<a href="product.php">Books</a>
 							</li>
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.php">Features</a>
+							<li >
+								<a href="shoping-cart.php">Wishlist</a>
 							</li>
 							<li>
 								<a href="about.php">About</a>
@@ -200,12 +200,12 @@ if (!empty($data3)) {
 					</span>
 				</li>
 
-				<li>
-					<a href="product.php">Shop</a>
+				<li class="label1" data-label1="New">
+					<a href="product.php">Books</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shoping-cart.html">Wishlist</a>
 				</li>
 				<li>
 					<a href="about.html">About</a>
@@ -790,11 +790,11 @@ if (!empty($data3)) {
 			</div>
 
 			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
+			<!-- <div class="flex-c-m flex-w w-full p-t-45">
 				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
 					Load More
 				</a>
-			</div>
+			</div> -->
 		</div>
 	</section>
 

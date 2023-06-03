@@ -85,12 +85,12 @@ $data4 = $stmt->fetchAll();
 								<a href="index.php">Home</a>
 							</li>
 
-							<li>
-								<a href="product.php">Shop</a>
+							<li class="label1" data-label1="New">
+								<a href="product.php">Books</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.php">Features</a>
+							<li>
+								<a href="shoping-cart.php">Wishlist</a>
 							</li>
 
 							<li>
@@ -187,12 +187,12 @@ $data4 = $stmt->fetchAll();
 					</span>
 				</li>
 
-				<li>
-					<a href="product.php">Shop</a>
+				<li class="label1" data-label1="New">
+					<a href="product.php">Books</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shoping-cart.php">Wishlist</a>
 				</li>
 
 				<li>
@@ -632,15 +632,7 @@ $data4 = $stmt->fetchAll();
 			</div>
 		</div>
 
-		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25">
-				SKU: JAK-01
-			</span>
 
-			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men
-			</span>
-		</div>
 	</section>
 
 

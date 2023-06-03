@@ -55,12 +55,12 @@ require("VerficationAuth.php");
 							<a href="index.php">Home</a>
 						</li>
 
-						<li>
-							<a href="product.php">Shop</a>
+						<li class="label1" data-label1="New">
+							<a href="product.php">Books</a>
 						</li>
 
-						<li class="label1" data-label1="hot">
-							<a href="shoping-cart.php">Features</a>
+						<li>
+							<a href="shoping-cart.php">Wishlist</a>
 						</li>
 						<li class="active-menu">
 							<a href="about.php">About</a>
@@ -145,12 +145,12 @@ require("VerficationAuth.php");
 					</span>
 				</li>
 
-				<li>
-					<a href="product.php">Shop</a>
+				<li class="label1" data-label1="New">
+					<a href="product.php">Books</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shoping-cart.php">Wishlist</a>
 				</li>
 				<li>
 					<a href="about.php">About</a>
