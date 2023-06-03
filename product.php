@@ -1,9 +1,31 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
-$query = "select * from livre";
-$result = $con->query($query);
-$data = $result->fetchAll();
+if(isset($_GET["search"])){
+	$search =$_GET["search"];
+	if(!empty($search)){
+		
+		$query = "SELECT * FROM livre WHERE TITRE LIKE :searchValue";
+
+			// Prepare the statement
+			$statement = $con->prepare($query);
+
+			// Bind the search value to the placeholder
+			$statement->bindValue(':searchValue', '%' . $search . '%');
+
+			// Execute the statement
+			$statement->execute();
+			$data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+	}
+}
+else{
+	$query = "select * from livre";
+	$result = $con->query($query);
+	$data = $result->fetchAll();
+}
+
+
 
 // 
 // get all data from wishlist table 
@@ -125,7 +147,7 @@ if (isset($_GET["idLivre"])) {
 						</div>
 						<a href="#"
 							class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti js-show-cart"
-							data-notify="0">
+							data-notify="1">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
 						<div class="p-l-15">
@@ -948,7 +970,7 @@ if (isset($_GET["idLivre"])) {
 		<script src="vendor/sweetalert/sweetalert.min.js"></script>
 		<script>
 			$('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
-				e.preventDefault();
+					e.preventDefault();
 			});
 
 			$('.js-addwish-b2').each(function () {
@@ -974,6 +996,33 @@ if (isset($_GET["idLivre"])) {
 						}
 					}
 				}
+
+					//for wishlist number
+					$.ajax({
+  				url: 'getNumberWishlist.php',
+						method: 'GET',
+						dataType: 'json',
+						success: function(response) {
+							// Iterate over the PHP array using JavaScript
+							//console.log(response);
+							//console.log(response.nbr);
+							if (response && response.nbr) {
+								var value = response.nbr;
+								console.log('Retrieved value:', value);
+								var stringValue = '' + value;
+								$('.js-show-cart').attr('data-notify', stringValue);
+								} else {
+								console.log('Empty response or missing value in JSON');
+								$('.js-show-cart').attr('data-notify', '0');
+								}
+							
+						},
+						error: function(xhr, status, error) {
+							console.log(xhr.responseText);
+						}
+						});
+					//
+
 				//$(this).addClass('js-addedwish-b2');
 				// check is the heart is checked in bd
 				var $element = $(this);
@@ -1051,10 +1100,27 @@ if (isset($_GET["idLivre"])) {
 							}
 						});
 						swal(nameProduct, "is removed from the wishlist!", "success");
+						
+					/*	var nbrWish = $('.js-show-cart').data('notify');
+						nbrWish--;
+						var stringValue = '' + nbrWish;
+						$('.js-show-cart').attr('data-notify', stringValue);*/
+
+				
+
+						
 
 						$(this).removeClass('js-addedwish-b2');
 						isAdded = false;
 					} else {
+
+						//var test = $('.js-show-cart').data('notify');
+						//$('.js-show-cart').data('notify', '12');
+
+						//$('.js-show-cart').attr('data-notify', '12');
+
+						//alert(test);
+						//update wishlist 
 						// Add to wishlist
 						//window.location.href = "AddTowishList.php";
 						$.ajax({
@@ -1072,9 +1138,44 @@ if (isset($_GET["idLivre"])) {
 						});
 
 
+					/*	var nbrWish = parseInt($('.js-show-cart').data('notify'), 10);
+						var nbr2=	nbrWish + 1;
+						var stringValue1 = '' + nbr2;
+						console.log('Data type:', typeof nbrWish);
+						console.log("nombre wish is" + nbr2);
+						console.log("nombre wish is" + stringValue1);
+						$('.js-show-cart').attr('data-notify', stringValue1);*/
 						swal(nameProduct, "is added to the wishlist!", "success");
+					
 
+				/*		$.ajax({
+  				url: 'getNumberWishlist.php',
+						method: 'GET',
+						dataType: 'json',
+						success: function(response) {
+							// Iterate over the PHP array using JavaScript
+							//console.log(response);
+							//console.log(response.nbr);
+							if (response && response.nbr) {
+								var value = response.nbr;
+								console.log('Retrieved value: for number', value);
+								var stringValue = '' + value;
+								$('.js-show-cart').attr('data-notify', stringValue);
+								} else {
+								console.log('Empty response or missing value in JSON');
+								$('.js-show-cart').attr('data-notify', '0');
+								}
+							
+						},
+						error: function(xhr, status, error) {
+							console.log(xhr.responseText);
+						}
+						});*/
 						$(this).addClass('js-addedwish-b2');
+
+							
+
+
 						isAdded = true;
 					}
 				});
@@ -1143,6 +1244,39 @@ if (isset($_GET["idLivre"])) {
 				})
 			});
 		</script>
+		<!--===============================================================================================-->
+
+		<script>
+
+</script>
+
+
+<script>
+
+$(document).ready(function() {
+  $('input[name="search-product"]').on('keyup', function(event) {
+    if (event.keyCode === 13) {
+      // Get the input value
+      var searchValue = $(this).val();
+      
+      // Construct the query string based on the input value
+      var queryString = 'search=' + encodeURIComponent(searchValue);
+      
+      // Redirect the user to another page with the query string
+      window.location.href = 'product.php?' + queryString;
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
 		<!--===============================================================================================-->
 		<script src="js/main.js"></script>
 		<script src="https://unpkg.com/url-search-params-polyfill"></script>

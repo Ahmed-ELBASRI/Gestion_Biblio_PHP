@@ -1,10 +1,7 @@
 <?php 
     session_start();
-   /* session_destroy();*/
-  unset($_SESSION["email"]) ;
-  unset($_SESSION["role"]) ;
-  unset($_SESSION["newsletter"]) ;
-  unset($_SESSION["ID_PERSONNE"]) ;
+   session_destroy();
+
 header("location: ../formLogin.php");
     exit();
 
