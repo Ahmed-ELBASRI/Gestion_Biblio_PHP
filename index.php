@@ -4,16 +4,13 @@ require("login-form-v1/login_v1/php/connection.php");
 $query = "SELECT  c.ID_CATEGORIE,c.photoCategorie,COUNT(*) AS total_count
 FROM categorie c
 INNER JOIN livre l ON c.ID_CATEGORIE = l.ID_CATEGORIE
-INNER JOIN reserverlivre r ON l.ID_LIVRE = r.ID_LIVRE
+INNER JOIN empruntlivre e ON l.ID_LIVRE = e.ID_LIVRE
 GROUP BY c.ID_CATEGORIE
 ORDER BY total_count DESC
 LIMIT 3;";
 $result = $con->query($query);
 $data = $result->fetchAll();
 // ----------------------
-$query1 = "select * from livre";
-$result = $con->query($query1);
-$data2 = $result->fetchAll();
 // ----------------------
 $ID_PERSSONE = $_SESSION["ID_PERSONNE"];
 $query2 = "SELECT c.ID_CATEGORIE,COUNT(*) FROM empruntlivre E INNER JOIN livre L 
