@@ -1,9 +1,31 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
-$query = "select * from livre";
-$result = $con->query($query);
-$data = $result->fetchAll();
+if(isset($_GET["search"])){
+	$search =$_GET["search"];
+	if(!empty($search)){
+		
+		$query = "SELECT * FROM livre WHERE TITRE LIKE :searchValue";
+
+			// Prepare the statement
+			$statement = $con->prepare($query);
+
+			// Bind the search value to the placeholder
+			$statement->bindValue(':searchValue', '%' . $search . '%');
+
+			// Execute the statement
+			$statement->execute();
+			$data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+	}
+}
+else{
+	$query = "select * from livre";
+	$result = $con->query($query);
+	$data = $result->fetchAll();
+}
+
+
 
 // 
 // get all data from wishlist table 
@@ -1222,6 +1244,39 @@ if (isset($_GET["idLivre"])) {
 				})
 			});
 		</script>
+		<!--===============================================================================================-->
+
+		<script>
+
+</script>
+
+
+<script>
+
+$(document).ready(function() {
+  $('input[name="search-product"]').on('keyup', function(event) {
+    if (event.keyCode === 13) {
+      // Get the input value
+      var searchValue = $(this).val();
+      
+      // Construct the query string based on the input value
+      var queryString = 'search=' + encodeURIComponent(searchValue);
+      
+      // Redirect the user to another page with the query string
+      window.location.href = 'product.php?' + queryString;
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
 		<!--===============================================================================================-->
 		<script src="js/main.js"></script>
 		<script src="https://unpkg.com/url-search-params-polyfill"></script>
