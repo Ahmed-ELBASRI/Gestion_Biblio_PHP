@@ -68,6 +68,19 @@ require("VerficationAuth.php");
 						<li>
 							<a href="contact.php">Contact</a>
 						</li>
+						<?php
+
+						if (isset($_SESSION["role"])) {
+							$role = $_SESSION["role"];
+							if ($role == 'admin') {
+								?>
+								<li>
+									<a href="dashboard/public/index.php">dashboard</a>
+								</li>
+								<?php
+							}
+						}
+						?>
 					</ul>
 				</div>
 
@@ -458,7 +471,7 @@ require("VerficationAuth.php");
 
 
 	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
+	<div class="btn-back-to-top m-b-10" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>

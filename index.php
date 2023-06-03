@@ -10,9 +10,42 @@ ORDER BY total_count DESC
 LIMIT 3;";
 $result = $con->query($query);
 $data = $result->fetchAll();
+// ----------------------
 $query1 = "select * from livre";
 $result = $con->query($query1);
 $data2 = $result->fetchAll();
+// ----------------------
+$ID_PERSSONE = $_SESSION["ID_PERSONNE"];
+$query2 = "SELECT c.ID_CATEGORIE,COUNT(*) FROM empruntlivre E INNER JOIN livre L 
+ON E.ID_LIVRE = L.ID_LIVRE INNER JOIN categorie C 
+ON L.ID_CATEGORIE = C.ID_CATEGORIE
+where e.ID_PERSONNE = :ID_PERSONNE
+GROUP BY C.ID_CATEGORIE
+ORDER BY COUNT(*) DESC
+LIMIT 1";
+$stmt = $con->prepare("$query2");
+$stmt->execute(array(":ID_PERSONNE" => $ID_PERSSONE));
+$data3 = $stmt->fetch();
+if (!empty($data3)) {
+	if ($data3["COUNT(*)"] >= 3) {
+		$top_books = "SELECT * FROM livre L INNER JOIN categorie C 
+		ON L.ID_CATEGORIE = C.ID_CATEGORIE
+		WHERE L.ID_CATEGORIE = :ID_CATEGORIE
+		LIMIT 8";
+		$stmt = $con->prepare("$top_books");
+		$stmt->execute(array(":ID_CATEGORIE" => $data3["ID_CATEGORIE"]));
+		$data4 = $stmt->fetchAll();
+	} else {
+		$top_books = "SELECT l.*, COUNT(*) FROM empruntlivre e INNER JOIN livre l 
+		ON e.ID_LIVRE = l.ID_LIVRE
+		GROUP BY e.ID_LIVRE
+		ORDER BY COUNT(*) DESC
+		LIMIT 8";
+		$stmt = $con->prepare("$top_books");
+		$stmt->execute();
+		$data4 = $stmt->fetchAll();
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +85,7 @@ $data2 = $result->fetchAll();
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" href="css/annotation.css">
+
 </head>
 
 <body class="animsition">
@@ -297,14 +331,14 @@ $data2 = $result->fetchAll();
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-								Books are a uniquely
+								<span class="ltext-101 cl10 respon2">
+									Books are a uniquely
 								</span>
 							</div>
 
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-								portable magic
+								<h2 class="ltext-201 cl10 p-t-19 p-b-43 respon1">
+									portable magic
 								</h2>
 							</div>
 
@@ -320,17 +354,17 @@ $data2 = $result->fetchAll();
 
 				<div class="item-slick1" style="background-image: url(images/slide02.jpg);">
 					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+						<div class="flex-col-l-m h-full p-t-10 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-								Escape reality
+								<span class="ltext-101 cl10 respon2">
+									Escape reality
 								</span>
 							</div>
 
 							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn"
 								data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-								Embrace books
+								<h2 class="ltext-201 cl10 p-t-19 p-b-43 respon1">
+									Embrace books
 								</h2>
 							</div>
 
@@ -349,15 +383,15 @@ $data2 = $result->fetchAll();
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft"
 								data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-								Escape reality
+								<span class="ltext-101 cl10 respon2">
+									Escape reality
 								</span>
 							</div>
 
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight"
 								data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-								Embrace books
+								<h2 class="ltext-201 cl10 p-t-19 p-b-43 respon1">
+									Embrace books
 								</h2>
 							</div>
 
@@ -378,7 +412,7 @@ $data2 = $result->fetchAll();
 	<!-- Banner -->
 	<div class="sec-banner bg0 p-t-80 p-b-50">
 		<div class="container">
-		<div class="p-b-10">
+			<div class="p-b-10">
 				<h3 class="ltext-103 cl5 p-b-30">
 					Top Categories
 				</h3>
@@ -387,7 +421,7 @@ $data2 = $result->fetchAll();
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="<?=$data[0]["photoCategorie"]?>" alt="IMG-BANNER">
+						<img src="<?= $data[0]["photoCategorie"] ?>" alt="IMG-BANNER">
 
 						<a href="product.php"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
@@ -406,7 +440,7 @@ $data2 = $result->fetchAll();
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="<?=$data[1]["photoCategorie"]?>" alt="IMG-BANNER">
+						<img src="<?= $data[1]["photoCategorie"] ?>" alt="IMG-BANNER">
 
 						<a href="product.php"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
@@ -427,7 +461,7 @@ $data2 = $result->fetchAll();
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="<?=$data[2]["photoCategorie"]?>" alt="IMG-BANNER">
+						<img src="<?= $data[2]["photoCategorie"] ?>" alt="IMG-BANNER">
 
 						<a href="product.php"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
@@ -458,7 +492,7 @@ $data2 = $result->fetchAll();
 
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
 					<?php
@@ -705,12 +739,12 @@ $data2 = $result->fetchAll();
 			</div>
 
 			<div class="row isotope-grid">
-			<?php
-				for ($i = 0; $i < count($data2); $i++) {
+				<?php
+				for ($i = 0; $i < count($data4); $i++) {
 					?>
 					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php
 					for ($j = 0; $j < count($data1); $j++) {
-						if ($data1[$j]["ID_CATEGORIE"] == $data[$i]["ID_CATEGORIE"]) {
+						if ($data1[$j]["ID_CATEGORIE"] == $data4[$i]["ID_CATEGORIE"]) {
 							echo $data1[$j]["LIBELLE_CATEGORIE"];
 							break;
 						}
@@ -718,9 +752,9 @@ $data2 = $result->fetchAll();
 					?>">
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<img src="<?= $data2[$i]["COUVERTURE"] ?>" alt="IMG-PRODUCT">
+								<img src="<?= $data4[$i]["COUVERTURE"] ?>" alt="IMG-PRODUCT">
 
-								<a href="product.php?idLivre=<?=$data2[$i]["ID_LIVRE"]?>"
+								<a href="product.php?idLivre=<?= $data4[$i]["ID_LIVRE"] ?>"
 									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 ">
 									Quick View
 								</a>
@@ -728,13 +762,13 @@ $data2 = $result->fetchAll();
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.php?id=<?= $data2[$i]["ID_LIVRE"] ?>"
+									<a href="product-detail.php?id=<?= $data4[$i]["ID_LIVRE"] ?>"
 										class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										<?= $data2[$i]["TITRE"] ?>
+										<?= $data4[$i]["TITRE"] ?>
 									</a>
 
 									<span class="stext-105 cl3">
-										<?= $data2[$i]["PRIX"] ?>
+										<?= $data4[$i]["PRIX"] ?>
 									</span>
 								</div>
 
@@ -895,7 +929,7 @@ $data2 = $result->fetchAll();
 
 
 	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
+	<div class="btn-back-to-top m-b-10" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>

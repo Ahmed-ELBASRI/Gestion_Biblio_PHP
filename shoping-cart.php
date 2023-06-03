@@ -52,7 +52,7 @@ $data = $result->fetchAll();
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="#" class="logo">
+					<a href="index.php" class="logo">
 						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
@@ -78,6 +78,19 @@ $data = $result->fetchAll();
 							<li>
 								<a href="contact.php">Contact</a>
 							</li>
+							<?php
+
+							if (isset($_SESSION["role"])) {
+								$role = $_SESSION["role"];
+								if ($role == 'admin') {
+									?>
+									<li>
+										<a href="dashboard/public/index.php">dashboard</a>
+									</li>
+									<?php
+								}
+							}
+							?>
 						</ul>
 					</div>
 
@@ -305,34 +318,41 @@ $data = $result->fetchAll();
 									<th class="column-6">Delete</th>
 									<th class="column-7"></th>
 								</tr>
-								<?php for($i=0;$i<count($data);$i++){?>
+								<?php for ($i = 0; $i < count($data); $i++) { ?>
 									<tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="<?= $data[$i]["COUVERTURE_MIN"]?>" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2"><?= $data[$i]["TITRE"] ?></td>
-									<td class="column-3"><?= $data[$i]["LIBELLE_CATEGORIE"] ?></td>
-									<td class="column-4"><?= $data[$i]["NOM_AUTEUR"] ?></td>
-									<td class="column-5">
-									<div class="p-l-15">
-										<div class="image-container">
-											<a href="product-detail.php?id=<?= $data[$i]["ID_LIVRE"] ?>">
-												<img src="images/more.png" alt="more informations" class="annotated-image">
-											</a>
-									</div>
-									</td>
-									<td class="column-6">
-									<div class="p-l-15">
-										<div class="image-container">
-											<a href="delete_wishlist.php?position=<?=$data[$i]["ID_LIVRE"]?>">
-												<img src="images/annuler.png" alt="" class="annotated-image">
-											</a>
-									</div>
-									</td>
-									<td class="column-7"></td>
-								</tr>
+										<td class="column-1">
+											<div class="how-itemcart1">
+												<img src="<?= $data[$i]["COUVERTURE_MIN"] ?>" alt="IMG">
+											</div>
+										</td>
+										<td class="column-2">
+											<?= $data[$i]["TITRE"] ?>
+										</td>
+										<td class="column-3">
+											<?= $data[$i]["LIBELLE_CATEGORIE"] ?>
+										</td>
+										<td class="column-4">
+											<?= $data[$i]["NOM_AUTEUR"] ?>
+										</td>
+										<td class="column-5">
+											<div class="p-l-15">
+												<div class="image-container">
+													<a href="product-detail.php?id=<?= $data[$i]["ID_LIVRE"] ?>">
+														<img src="images/more.png" alt="more informations"
+															class="annotated-image">
+													</a>
+												</div>
+										</td>
+										<td class="column-6">
+											<div class="p-l-15">
+												<div class="image-container">
+													<a href="delete_wishlist.php?position=<?= $data[$i]["ID_LIVRE"] ?>">
+														<img src="images/annuler.png" alt="" class="annotated-image">
+													</a>
+												</div>
+										</td>
+										<td class="column-7"></td>
+									</tr>
 								<?php } ?>
 							</table>
 						</div>
@@ -509,7 +529,7 @@ $data = $result->fetchAll();
 
 
 	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
+	<div class="btn-back-to-top m-b-10" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
