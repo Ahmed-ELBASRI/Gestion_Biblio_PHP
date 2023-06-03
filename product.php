@@ -6,6 +6,14 @@ $result = $con->query($query);
 $data = $result->fetchAll();
 
 // 
+// get all data from wishlist table 
+$ID_PERSONNE=$_SESSION["ID_PERSONNE"];
+$query="select * from favorie where ID_PERSONNE=:ID_PERSONNE";
+        $statement3=$con->prepare($query);
+        $statement3->execute(array("ID_PERSONNE"=>$ID_PERSONNE));
+        $data3=$statement3->fetchAll(PDO::FETCH_ASSOC);
+		//print_r($data3);
+//
 
 //add data for livre 
 if(isset($_GET["idLivre"])){
@@ -937,16 +945,78 @@ if(isset($_GET["idLivre"])){
 			$('.js-addwish-b2').each(function () {
 				var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 				var isAdded = false;
+				var hrefValue = $(this).parent().parent().find('.js-name-b2').attr('href');
+				//var href = $(this).parent().parent().find('.js-name-b2').attr('href');
+				//var urlParams = new URLSearchParams(hrefValue);
+				//var idd = urlParams.get('id');
+
+
+				
+
+				var idd = null;
+				var params = hrefValue.split('?')[1]; // Get the query parameters portion of the URL
+				if (params) {
+				var queryParams = params.split('&');
+				for (var i = 0; i < queryParams.length; i++) {
+					var param = queryParams[i].split('=');
+					if (param[0] === 'id') {
+					idd = param[1];
+					break;
+					}
+				}
+				}
+
+				// check is the heart is checked in bd
+				<?php
+						if(!empty($data3)){
+							for($i=0;$i<count($data3);$i++){
+								
+							}
+						}
+				?>
+				$(this).addClass('js-addedwish-b2');
+
+
+				//
 
 				$(this).on('click', function () {
 					if (isAdded) {
 						// Remove from wishlist
+						$.ajax({
+								url: 'DeleteTowishList.php',
+								method: 'POST',
+								data: { ID_LIVRE:idd },
+								success: function(response) {
+								// Handle the response from the PHP script
+								console.log(response);
+								},
+								error: function(xhr, status, error) {
+								// Handle errors, if any
+								console.log(xhr.responseText);
+								}
+							});
 						swal(nameProduct, "is removed from the wishlist!", "success");
 
 						$(this).removeClass('js-addedwish-b2');
 						isAdded = false;
 					} else {
 						// Add to wishlist
+						//window.location.href = "AddTowishList.php";
+						$.ajax({
+								url: 'AddTowishList.php',
+								method: 'POST',
+								data: { ID_LIVRE:idd },
+								success: function(response) {
+								// Handle the response from the PHP script
+								console.log(response);
+								},
+								error: function(xhr, status, error) {
+								// Handle errors, if any
+								console.log(xhr.responseText);
+								}
+							});
+
+
 						swal(nameProduct, "is added to the wishlist!", "success");
 
 						$(this).addClass('js-addedwish-b2');
@@ -967,11 +1037,16 @@ if(isset($_GET["idLivre"])){
 						$(this).removeClass('js-addedwish-detail');
 						isAdded = false;
 					} else {
+						
+						//alert("hello");
 						// Add to wishlist
 						swal(nameProduct, "is added to the wishlist!", "success");
 
 						$(this).addClass('js-addedwish-detail');
 						isAdded = true;
+
+						
+
 					}
 				});
 			});
@@ -1015,6 +1090,8 @@ if(isset($_GET["idLivre"])){
 		</script>
 		<!--===============================================================================================-->
 		<script src="js/main.js"></script>
+		<script src="https://unpkg.com/url-search-params-polyfill"></script>
+
 
 </body>
 
