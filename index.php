@@ -15,7 +15,7 @@ $query1 = "select * from livre";
 $result = $con->query($query1);
 $data2 = $result->fetchAll();
 // ----------------------
-$ID_PERSSONE=$_SESSION["ID_PERSONNE"];
+$ID_PERSSONE = $_SESSION["ID_PERSONNE"];
 $query2 = "SELECT c.ID_CATEGORIE,COUNT(*) FROM empruntlivre E INNER JOIN livre L 
 ON E.ID_LIVRE = L.ID_LIVRE INNER JOIN categorie C 
 ON L.ID_CATEGORIE = C.ID_CATEGORIE
@@ -24,17 +24,26 @@ GROUP BY C.ID_CATEGORIE
 ORDER BY COUNT(*) DESC
 LIMIT 1";
 $stmt = $con->prepare("$query2");
-$stmt->execute(array(":ID_PERSONNE"=>$ID_PERSSONE));
-$data3=$stmt->fetch();
-if(!empty($data3)){
-	if(count($data3)>=4){
-		$top_books="SELECT * FROM livre L INNER JOIN categorie C 
+$stmt->execute(array(":ID_PERSONNE" => $ID_PERSSONE));
+$data3 = $stmt->fetch();
+if (!empty($data3)) {
+	if ($data3["COUNT(*)"] >= 3) {
+		$top_books = "SELECT * FROM livre L INNER JOIN categorie C 
 		ON L.ID_CATEGORIE = C.ID_CATEGORIE
 		WHERE L.ID_CATEGORIE = :ID_CATEGORIE
-		LIMIT 10";	
+		LIMIT 8";
 		$stmt = $con->prepare("$top_books");
-		$stmt->execute(array(":ID_CATEGORIE"=>$data3["ID_CATEGORIE"]));
-		$data4=$stmt->fetchAll();
+		$stmt->execute(array(":ID_CATEGORIE" => $data3["ID_CATEGORIE"]));
+		$data4 = $stmt->fetchAll();
+	} else {
+		$top_books = "SELECT l.*, COUNT(*) FROM empruntlivre e INNER JOIN livre l 
+		ON e.ID_LIVRE = l.ID_LIVRE
+		GROUP BY e.ID_LIVRE
+		ORDER BY COUNT(*) DESC
+		LIMIT 8";
+		$stmt = $con->prepare("$top_books");
+		$stmt->execute();
+		$data4 = $stmt->fetchAll();
 	}
 }
 ?>
@@ -920,7 +929,7 @@ if(!empty($data3)){
 
 
 	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
+	<div class="btn-back-to-top m-b-10" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>

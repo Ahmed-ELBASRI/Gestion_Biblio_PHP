@@ -8,18 +8,18 @@ $data = $result->fetchAll();
 // 
 // get all data from wishlist table 
 
-		//print_r($data3);
+//print_r($data3);
 //
 
 //add data for livre 
-if(isset($_GET["idLivre"])){
-	$idLivre=$_GET["idLivre"];
-	if(!empty($idLivre)){
-		$query="select * from livre where ID_LIVRE=:idLivre";
-        $statement2=$con->prepare($query);
-        $statement2->execute(array("idLivre"=>$idLivre));
-        $data2=$statement2->fetch(PDO::FETCH_ASSOC);
-		
+if (isset($_GET["idLivre"])) {
+	$idLivre = $_GET["idLivre"];
+	if (!empty($idLivre)) {
+		$query = "select * from livre where ID_LIVRE=:idLivre";
+		$statement2 = $con->prepare($query);
+		$statement2->execute(array("idLivre" => $idLivre));
+		$data2 = $statement2->fetch(PDO::FETCH_ASSOC);
+
 	}
 }
 
@@ -102,6 +102,19 @@ if(isset($_GET["idLivre"])){
 							<li>
 								<a href="contact.php">Contact</a>
 							</li>
+							<?php
+
+							if (isset($_SESSION["role"])) {
+								$role = $_SESSION["role"];
+								if ($role == 'admin') {
+									?>
+									<li>
+										<a href="dashboard/public/index.php">dashboard</a>
+									</li>
+									<?php
+								}
+							}
+							?>
 						</ul>
 					</div>
 
@@ -572,7 +585,7 @@ if(isset($_GET["idLivre"])){
 
 			<div class="row isotope-grid">
 
-			<?php
+				<?php
 				for ($i = 0; $i < count($data); $i++) {
 					?>
 					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php
@@ -587,7 +600,7 @@ if(isset($_GET["idLivre"])){
 							<div class="block2-pic hov-img0">
 								<img src="<?= $data[$i]["COUVERTURE"] ?>" alt="IMG-PRODUCT">
 
-								<a href="product.php?idLivre=<?=$data[$i]["ID_LIVRE"]?>"
+								<a href="product.php?idLivre=<?= $data[$i]["ID_LIVRE"] ?>"
 									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 ">
 									Quick View
 								</a>
@@ -623,15 +636,15 @@ if(isset($_GET["idLivre"])){
 
 			</div>
 
-			</div>
-
-			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
-				</a>
-			</div>
 		</div>
+
+		<!-- Load more -->
+		<div class="flex-c-m flex-w w-full p-t-45">
+			<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				Load More
+			</a>
+		</div>
+	</div>
 	</div>
 
 
@@ -770,7 +783,7 @@ if(isset($_GET["idLivre"])){
 
 
 	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
+	<div class="btn-back-to-top m-b-10" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
@@ -780,111 +793,111 @@ if(isset($_GET["idLivre"])){
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
-			<div class="container">
-				<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-					<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-						<img src="images/icons/icon-close.png" alt="CLOSE">
-					</button>
+		<div class="container">
+			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
+					<img src="images/icons/icon-close.png" alt="CLOSE">
+				</button>
 
-					<div class="row">
-						<div class="col-md-6 col-lg-7 p-b-30">
-							<div class="p-l-25 p-r-30 p-lr-0-lg">
-								<div class="wrap-slick3 flex-sb flex-w">
-									<!-- <div class="wrap-slick3-dots"></div> -->
-									<!-- <div class="wrap-slick3-arrows flex-sb-m flex-w"></div> -->
+				<div class="row">
+					<div class="col-md-6 col-lg-7 p-b-30">
+						<div class="p-l-25 p-r-30 p-lr-0-lg">
+							<div class="wrap-slick3 flex-sb flex-w">
+								<!-- <div class="wrap-slick3-dots"></div> -->
+								<!-- <div class="wrap-slick3-arrows flex-sb-m flex-w"></div> -->
 
-									<div class="slick3 gallery-lb">
-										<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-											<div class="wrap-pic-w pos-relative">
-												<img src="<?= $data2["COUVERTURE"] ?>" alt="IMG-PRODUCT">
-												<!-- 
+								<div class="slick3 gallery-lb">
+									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="<?= $data2["COUVERTURE"] ?>" alt="IMG-PRODUCT">
+											<!-- 
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
 											<i class="fa fa-expand"></i>
 										</a> -->
-											</div>
 										</div>
+									</div>
 
-										<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-											<div class="wrap-pic-w pos-relative">
-												<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-												<!-- 
+									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
+											<!-- 
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
 											<i class="fa fa-expand"></i> -->
-												</a>
-											</div>
+											</a>
 										</div>
+									</div>
 
-										<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-											<div class="wrap-pic-w pos-relative">
-												<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
+									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
 
-												<!-- <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+											<!-- <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
 											<i class="fa fa-expand"></i>
 										</a> -->
-											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 
-						<div class="col-md-6 col-lg-5 p-b-30">
-							<div class="p-r-50 p-t-5 p-lr-0-lg">
-								<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-									<?= $data2["TITRE"] ?>
-									
-								</h4>
+					<div class="col-md-6 col-lg-5 p-b-30">
+						<div class="p-r-50 p-t-5 p-lr-0-lg">
+							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+								<?= $data2["TITRE"] ?>
 
-								<span class="mtext-106 cl2">
-									<?= $data2["PRIX"] ?>
-								</span>
+							</h4>
 
-								<p class="stext-102 cl3 p-t-23">
-									<?= $data2["DESCRIPTION"] ?>
-								</p>
+							<span class="mtext-106 cl2">
+								<?= $data2["PRIX"] ?>
+							</span>
 
-								<!--  -->
-								<div class="p-t-33">
-									<div class="flex-w flex-r-m p-b-10">
-										<div class="size-204 flex-w flex-m respon6-next">
-											<button
-												class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-												Reserver
-											</button>
-										</div>
+							<p class="stext-102 cl3 p-t-23">
+								<?= $data2["DESCRIPTION"] ?>
+							</p>
+
+							<!--  -->
+							<div class="p-t-33">
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-204 flex-w flex-m respon6-next">
+										<button
+											class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+											Reserver
+										</button>
 									</div>
 								</div>
+							</div>
 
-								<!--  -->
-								<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-									<div class="flex-m bor9 p-r-10 m-r-11">
-										<a href="#"
-											class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-											data-tooltip="Add to Wishlist">
-											<i class="zmdi zmdi-favorite"></i>
-										</a>
-									</div>
-
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-										data-tooltip="Facebook">
-										<i class="fa fa-facebook"></i>
-									</a>
-
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-										data-tooltip="Twitter">
-										<i class="fa fa-twitter"></i>
-									</a>
-
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-										data-tooltip="Google Plus">
-										<i class="fa fa-google-plus"></i>
+							<!--  -->
+							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+								<div class="flex-m bor9 p-r-10 m-r-11">
+									<a href="#"
+										class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
+										data-tooltip="Add to Wishlist">
+										<i class="zmdi zmdi-favorite"></i>
 									</a>
 								</div>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Facebook">
+									<i class="fa fa-facebook"></i>
+								</a>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Twitter">
+									<i class="fa fa-twitter"></i>
+								</a>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Google Plus">
+									<i class="fa fa-google-plus"></i>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
 
 		<!--===============================================================================================-->
@@ -947,53 +960,53 @@ if(isset($_GET["idLivre"])){
 				//var idd = urlParams.get('id');
 
 
-				
+
 
 				var idd = null;
 				var params = hrefValue.split('?')[1]; // Get the query parameters portion of the URL
 				if (params) {
-				var queryParams = params.split('&');
-				for (var i = 0; i < queryParams.length; i++) {
-					var param = queryParams[i].split('=');
-					if (param[0] === 'id') {
-					idd = param[1];
-					break;
+					var queryParams = params.split('&');
+					for (var i = 0; i < queryParams.length; i++) {
+						var param = queryParams[i].split('=');
+						if (param[0] === 'id') {
+							idd = param[1];
+							break;
+						}
 					}
-				}
 				}
 				//$(this).addClass('js-addedwish-b2');
 				// check is the heart is checked in bd
 				var $element = $(this);
 				$.ajax({
-  				url: 'getAllwishlist.php',
-						method: 'GET',
-						dataType: 'json',
-						success: function(response) {
-							// Iterate over the PHP array using JavaScript
-							console.log(response);
-							response.forEach(function(item) {
-								//console.log(item);
-								//console.log(idd);
-								//console.log(item.ID_LIVRE);
-								var idlivre=item.ID_LIVRE;
-								//console.log(idd);
-								//console.log(idlivre);
-								if(idlivre==idd){
-									//console.log("yes");
-									isAdded=true;
-									$element.addClass('js-addedwish-b2');
-									
-									//alert("yes");
+					url: 'getAllwishlist.php',
+					method: 'GET',
+					dataType: 'json',
+					success: function (response) {
+						// Iterate over the PHP array using JavaScript
+						console.log(response);
+						response.forEach(function (item) {
+							//console.log(item);
+							//console.log(idd);
+							//console.log(item.ID_LIVRE);
+							var idlivre = item.ID_LIVRE;
+							//console.log(idd);
+							//console.log(idlivre);
+							if (idlivre == idd) {
+								//console.log("yes");
+								isAdded = true;
+								$element.addClass('js-addedwish-b2');
 
-								}
-								else{
-									//console.log("no");
+								//alert("yes");
+
+							}
+							else {
+								//console.log("no");
 								//	$(this).removeClass('js-addedwish-b2');
-									
 
-								}
+
+							}
 							//	$(this).addClass('js-addedwish-b2');
-								//$(this).addClass('js-addedwish-detail');
+							//$(this).addClass('js-addedwish-detail');
 
 
 							/*if(item.ID_LIVRE===idd){
@@ -1011,12 +1024,12 @@ if(isset($_GET["idLivre"])){
 
 							}*/
 							// Perform any desired operations on each item
-							});
-						},
-						error: function(xhr, status, error) {
-							console.log(xhr.responseText);
-						}
 						});
+					},
+					error: function (xhr, status, error) {
+						console.log(xhr.responseText);
+					}
+				});
 
 
 				//
@@ -1025,18 +1038,18 @@ if(isset($_GET["idLivre"])){
 					if (isAdded) {
 						// Remove from wishlist
 						$.ajax({
-								url: 'DeleteTowishList.php',
-								method: 'POST',
-								data: { ID_LIVRE:idd },
-								success: function(response) {
+							url: 'DeleteTowishList.php',
+							method: 'POST',
+							data: { ID_LIVRE: idd },
+							success: function (response) {
 								// Handle the response from the PHP script
 								console.log(response);
-								},
-								error: function(xhr, status, error) {
+							},
+							error: function (xhr, status, error) {
 								// Handle errors, if any
 								console.log(xhr.responseText);
-								}
-							});
+							}
+						});
 						swal(nameProduct, "is removed from the wishlist!", "success");
 
 						$(this).removeClass('js-addedwish-b2');
@@ -1045,18 +1058,18 @@ if(isset($_GET["idLivre"])){
 						// Add to wishlist
 						//window.location.href = "AddTowishList.php";
 						$.ajax({
-								url: 'AddTowishList.php',
-								method: 'POST',
-								data: { ID_LIVRE:idd },
-								success: function(response) {
+							url: 'AddTowishList.php',
+							method: 'POST',
+							data: { ID_LIVRE: idd },
+							success: function (response) {
 								// Handle the response from the PHP script
 								console.log(response);
-								},
-								error: function(xhr, status, error) {
+							},
+							error: function (xhr, status, error) {
 								// Handle errors, if any
 								console.log(xhr.responseText);
-								}
-							});
+							}
+						});
 
 
 						swal(nameProduct, "is added to the wishlist!", "success");
@@ -1079,7 +1092,7 @@ if(isset($_GET["idLivre"])){
 						$(this).removeClass('js-addedwish-detail');
 						isAdded = false;
 					} else {
-						
+
 						//alert("hello");
 						// Add to wishlist
 						swal(nameProduct, "is added to the wishlist!", "success");
@@ -1087,7 +1100,7 @@ if(isset($_GET["idLivre"])){
 						$(this).addClass('js-addedwish-detail');
 						isAdded = true;
 
-						
+
 
 					}
 				});

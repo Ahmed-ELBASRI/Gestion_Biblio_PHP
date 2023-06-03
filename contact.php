@@ -73,6 +73,19 @@
 						<li class="active-menu">
 							<a href="contact.php">Contact</a>
 						</li>
+						<?php
+
+						if (isset($_SESSION["role"])) {
+							$role = $_SESSION["role"];
+							if ($role == 'admin') {
+								?>
+								<li>
+									<a href="dashboard/public/index.php">dashboard</a>
+								</li>
+								<?php
+							}
+						}
+						?>
 					</ul>
 				</div>
 
@@ -463,7 +476,7 @@
 							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
 								placeholder="email@example.com" value=<?php
 
-									//session_open();
+								//session_open();
 								$email = $_SESSION["email"];
 								echo "$email";
 								?>>
@@ -493,7 +506,7 @@
 
 
 	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
+	<div class="btn-back-to-top m-b-10" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
