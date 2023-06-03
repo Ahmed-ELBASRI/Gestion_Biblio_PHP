@@ -122,6 +122,9 @@ if (!empty($data3)) {
 							<li>
 								<a href="contact.php">Contact</a>
 							</li>
+							<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
 							<!-- display dashboard link  for admin  -->
 							<?php
 
@@ -205,14 +208,14 @@ if (!empty($data3)) {
 				</li>
 
 				<li>
-					<a href="shoping-cart.html">Wishlist</a>
+					<a href="shoping-cart.php">Wishlist</a>
 				</li>
 				<li>
-					<a href="about.html">About</a>
+					<a href="about.php">About</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contact</a>
+					<a href="contact.php">Contact</a>
 				</li>
 			</ul>
 		</div>

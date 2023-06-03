@@ -28,7 +28,7 @@ if (isset($_GET["idLivre"])) {
 <html lang="en">
 
 <head>
-	<title>Product</title>
+	<title>Books</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->

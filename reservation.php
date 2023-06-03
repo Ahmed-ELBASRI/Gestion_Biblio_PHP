@@ -9,7 +9,7 @@ $data = $result->fetchAll();
 <html lang="en">
 
 <head>
-	<title>Shoping Cart</title>
+	<title>Reservation</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -305,19 +305,20 @@ $data = $result->fetchAll();
 	<form class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+				<div class="col-lg-10 col-xl-9 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
 									<th class="column-1">Livre</th>
-									<th class="column-1">TITRE</th>
-									<th class="column-1">CATEGORIE</th>
+									<th class="column-1">Titre</th>
+									<th class="column-1">Categorie</th>
 									<th class="column-1">Auteur</th>
+									<th class="column-1">Statue</th>
+									<th class="column-1">Cancel</th>
 									<th class="column-1">More</th>
-									<th class="column-1">Delete</th>
 								</tr>
-								<?php for ($i = 0; $i < count($data); $i++) { ?>
+							<!--	<?php for ($i = 0; $i < count($data); $i++) { ?>
 									<tr class="table_row">
 										<td class="column-1">
 											<div class="how-itemcart1">
@@ -352,7 +353,7 @@ $data = $result->fetchAll();
 										</td>
 										<td class="column-7"></td>
 									</tr>
-								<?php } ?>
+								<?php } ?>-->
 							</table>
 						</div>
 					</div>
