@@ -324,16 +324,16 @@ $data = $result->fetchAll();
 												<img src="<?= $data[$i]["COUVERTURE_MIN"] ?>" alt="IMG">
 											</div>
 										</td>
-										<td class="column-2">
+										<td class="column-1">
 											<?= $data[$i]["TITRE"] ?>
 										</td>
-										<td class="column-3">
+										<td class="column-1">
 											<?= $data[$i]["LIBELLE_CATEGORIE"] ?>
 										</td>
-										<td class="column-4">
+										<td class="column-1">
 											<?= $data[$i]["NOM_AUTEUR"] ?>
 										</td>
-										<td class="column-5">
+										<td class="column-1">
 											<div class="p-l-15">
 												<div class="image-container">
 													<a href="product-detail.php?id=<?= $data[$i]["ID_LIVRE"] ?>">
@@ -342,7 +342,7 @@ $data = $result->fetchAll();
 													</a>
 												</div>
 										</td>
-										<td class="column-6">
+										<td class="column-1">
 											<div class="p-l-15">
 												<div class="image-container">
 													<a href="delete_wishlist.php?position=<?= $data[$i]["ID_LIVRE"] ?>">
@@ -350,7 +350,6 @@ $data = $result->fetchAll();
 													</a>
 												</div>
 										</td>
-										<td class="column-7"></td>
 									</tr>
 								<?php } ?>
 							</table>
