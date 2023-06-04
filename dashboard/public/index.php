@@ -38,7 +38,7 @@ if (!isset($_SESSION["role"])) {
         <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="index.php">
           Admin
         </a>
-        <ul class="mt-6">
+        <ul >
           <li class="relative px-6 py-3">
             <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
               aria-hidden="true"></span>
@@ -54,6 +54,21 @@ if (!isset($_SESSION["role"])) {
             </a>
           </li>
         </ul>
+        <ul >
+          <li class="relative px-6 py-3">
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+              href="livre.php">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                </path>
+              </svg>
+              <span class="ml-4">Livre</span>
+            </a>
+          </li>
+        </ul>
+
         <ul>
           <li class="relative px-6 py-3">
             <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -663,11 +678,14 @@ if (!isset($_SESSION["role"])) {
                   </tr>
                 </thead>
                 <?php
-                $query = "SELECT P.NOM,P.PRENOM,G.LIBELLE_GROUPE,L.TITRE,R.DATERESERVATION FROM groupe G INNER JOIN  etudier E 
-                      ON E.ID_GROUPE = G.ID_GROUPE INNER JOIN personne P 
-                      ON E.ID_PERSONNE = P.ID_PERSONNE INNER JOIN reserverlivre R  
-                      ON E.ID_PERSONNE = R.ID_PERSONNE INNER JOIN livre L 
-                      ON R.ID_LIVRE = L.ID_LIVRE";
+                $query = "SELECT P.NOM, P.PRENOM, G.LIBELLE_GROUPE, L.TITRE, R.DATERESERVATION
+                FROM groupe G
+                INNER JOIN etudier E ON G.ID_GROUPE = E.ID_GROUPE
+                INNER JOIN personne P ON E.ID_PERSONNE = P.ID_PERSONNE
+                INNER JOIN reserverlivre R ON P.ID_PERSONNE = R.ID_PERSONNE
+                LEFT JOIN empruntlivre EL ON R.ID_LIVRE = EL.ID_LIVRE AND R.ID_PERSONNE = EL.ID_PERSONNE
+                INNER JOIN livre L ON R.ID_LIVRE = L.ID_LIVRE
+                WHERE EL.ID_LIVRE IS NULL AND EL.ID_PERSONNE IS NULL AND R.archive=0;";
                 $statement = $con->query($query);
                 $data = $statement->fetchAll();
                 for ($i = 0; $i < count($data); $i++) {
