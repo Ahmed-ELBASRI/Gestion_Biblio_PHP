@@ -323,8 +323,10 @@ $data = $result->fetchAll();
 											</div>
 										</td>
 										<td class="column-1">
+										<td class="column-1">
 											<?= $data[$i]["TITRE"] ?>
 										</td>
+										<td class="column-1">
 										<td class="column-1">
 											<?= $data[$i]["LIBELLE_CATEGORIE"] ?>
 										</td>
