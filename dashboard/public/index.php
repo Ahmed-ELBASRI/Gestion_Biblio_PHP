@@ -538,7 +538,7 @@ if(!isset($_SESSION["role"])){
               </div>
               <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Total clients
+                  Nombre d'etudiants
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                   <?php 
@@ -565,10 +565,19 @@ if(!isset($_SESSION["role"])){
               </div>
               <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Account balance
+                  Nombre d'empruntes
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                  $ 46,760.89
+                <?php 
+                  // get nbr from 
+                  require "../../login-form-v1/Login_v1/php/connection.php";
+                  $query="select count(*) as nbr from empruntlivre";
+                  $statement=$con->query($query);
+                  $data=$statement->fetch();
+                  if(!empty($data)){
+                    echo $data["nbr"];
+                  }
+                  ?>
                 </p>
               </div>
             </div>
@@ -583,10 +592,19 @@ if(!isset($_SESSION["role"])){
               </div>
               <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                  New sales
+                  Nombre de livres
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                  376
+                <?php 
+                  // get nbr from 
+                  require "../../login-form-v1/Login_v1/php/connection.php";
+                  $query="select count(*) as nbr from livre";
+                  $statement=$con->query($query);
+                  $data=$statement->fetch();
+                  if(!empty($data)){
+                    echo $data["nbr"];
+                  }
+                  ?>
                 </p>
               </div>
             </div>
@@ -601,10 +619,22 @@ if(!isset($_SESSION["role"])){
               </div>
               <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Pending contacts
+                  Pending Reservations
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                  35
+                <?php 
+                  // get nbr from 
+                  require "../../login-form-v1/Login_v1/php/connection.php";
+                  $query="SELECT COUNT(*) as nbr
+                  FROM reserverlivre r
+                  LEFT JOIN empruntlivre e ON r.ID_LIVRE = e.ID_LIVRE AND r.ID_PERSONNE = e.ID_PERSONNE
+                  WHERE e.ID_LIVRE IS NULL AND e.ID_PERSONNE IS NULL;";
+                  $statement=$con->query($query);
+                  $data=$statement->fetch();
+                  if(!empty($data)){
+                    echo $data["nbr"];
+                  }
+                  ?>
                 </p>
               </div>
             </div>
