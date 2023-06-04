@@ -633,7 +633,7 @@ if (!isset($_SESSION["role"])) {
                   $query = "SELECT COUNT(*) as nbr
                   FROM reserverlivre r
                   LEFT JOIN empruntlivre e ON r.ID_LIVRE = e.ID_LIVRE AND r.ID_PERSONNE = e.ID_PERSONNE
-                  WHERE e.ID_LIVRE IS NULL AND e.ID_PERSONNE IS NULL;";
+                  WHERE e.ID_LIVRE IS NULL AND e.ID_PERSONNE IS NULL AND r.archive = 0;";
                   $statement = $con->query($query);
                   $data = $statement->fetch();
                   if (!empty($data)) {
