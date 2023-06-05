@@ -9,11 +9,11 @@ if (isset($_POST["email"])) {
 	$pass = $_POST["pass"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($pass)) {
 		$pass = md5($pass);
-		$query="SELECT p.*, s.libelle, e.DATERESERVATION
+		$query="SELECT p.*, s.libelle, e.DATERESERVATION, e.archive
 		FROM statut s
 		INNER JOIN personne p ON s.id = p.id_statue
 		LEFT JOIN reserverlivre e ON p.ID_PERSONNE = e.ID_PERSONNE
-		WHERE p.email LIKE :email AND p.password LIKE :pass";
+		WHERE  p.email LIKE :email AND p.password LIKE :pass";
 		/*$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";*/
 		require("php/connection.php");
 		$stmt = $con->prepare($query);
@@ -21,19 +21,21 @@ if (isset($_POST["email"])) {
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
 		// print_r($data);
 		// print_r($data);
-		
+		// exit();
 		if (!empty($data)) {
+
 			$_SESSION["email"]=$email;
 			$_SESSION["role"]=$data["libelle"];
 			$_SESSION["newsletter"]=$data["newsletter"];
 			$_SESSION["ID_PERSONNE"]=$data["ID_PERSONNE"];
-			if(empty($data["DATERESERVATION"])){
+			if(empty($data["DATERESERVATION"]) || $data["archive"] == 1){
 				$_SESSION["livreReserver"]=0;
-				
 			}
-			else{
+			else if($data["archive"] == 0){
 				$_SESSION["livreReserver"]=1;
 				
+			}else{
+				$_SESSION["livreReserver"]=1;
 			}
 			
 
