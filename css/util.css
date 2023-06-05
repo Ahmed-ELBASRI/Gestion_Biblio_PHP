@@ -9,7 +9,19 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
+.map-container {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+  }
+  
+  .responsive-map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+  }
 body, html {
 	font-family: Arial, sans-serif;
 	font-size: 15px;

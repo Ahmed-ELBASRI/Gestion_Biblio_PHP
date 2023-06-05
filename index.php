@@ -26,20 +26,29 @@ $stmt->execute(array(":ID_PERSONNE" => $ID_PERSSONE));
 $data3 = $stmt->fetch();
 if (!empty($data3)) {
 	if ($data3["COUNT(*)"] >= 3) {
-		$top_books = "SELECT * FROM livre L INNER JOIN categorie C 
-		ON L.ID_CATEGORIE = C.ID_CATEGORIE
+		$top_books = "SELECT L.* FROM livre L INNER JOIN categorie C 
+		ON L.ID_CATEGORIE = C.ID_CATEGORIE	INNER JOIN rediger R 
+		ON L.ID_LIVRE = R.ID_LIVRE INNER JOIN auteur A 
+		ON R.ID_AUTEUR = A.ID_AUTEUR
 		WHERE L.ID_CATEGORIE = :ID_CATEGORIE
 		LIMIT 8";
 		$stmt = $con->prepare("$top_books");
 		$stmt->execute(array(":ID_CATEGORIE" => $data3["ID_CATEGORIE"]));
 		$data4 = $stmt->fetchAll();
 	} else {
-		$top_books = "SELECT l.*, COUNT(*) FROM empruntlivre E  INNER JOIN reserverlivre R
-		ON E.ID_RESERVATION = R.ID_RESERVATION INNER JOIN livre l 
-		ON R.ID_LIVRE = l.ID_LIVRE
+		$top_books = "SELECT l.*, auteurs.NOM_AUTEUR, COUNT(*) 
+		FROM empruntlivre E
+		INNER JOIN reserverlivre R ON E.ID_RESERVATION = R.ID_RESERVATION
+		INNER JOIN livre l ON R.ID_LIVRE = l.ID_LIVRE
+		INNER JOIN (
+			SELECT RD.ID_LIVRE, GROUP_CONCAT(A.NOM_AUTEUR SEPARATOR ', ') AS NOM_AUTEUR
+			FROM rediger RD
+			INNER JOIN auteur A ON RD.ID_AUTEUR = A.ID_AUTEUR
+			GROUP BY RD.ID_LIVRE
+		) auteurs ON l.ID_LIVRE = auteurs.ID_LIVRE
 		GROUP BY l.ID_LIVRE
 		ORDER BY COUNT(*) DESC
-		LIMIT 8";
+		LIMIT 8;";
 		$stmt = $con->prepare("$top_books");
 		$stmt->execute();
 		$data4 = $stmt->fetchAll();
@@ -84,7 +93,7 @@ if (!empty($data3)) {
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" href="css/annotation.css">
-	
+
 
 </head>
 
@@ -112,7 +121,7 @@ if (!empty($data3)) {
 							<li class="label1" data-label1="New">
 								<a href="product.php">Books</a>
 							</li>
-							<li >
+							<li>
 								<a href="shoping-cart.php">Wishlist</a>
 							</li>
 							<li>
@@ -149,8 +158,7 @@ if (!empty($data3)) {
 							<i class="zmdi zmdi-search"></i>
 						</div>
 						<a href="shoping-cart.php">
-							<div 
-								class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
 								data-notify="0">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</div>
@@ -176,14 +184,21 @@ if (!empty($data3)) {
 			</div>
 
 			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+			<div class="wrap-icon-header flex-w flex-r-m m-r-10">
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-							data-notify="2">
-							<a href="shoping-cart.php"><i class="zmdi zmdi-favorite-outline"></i></a>
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
+					<a href="shoping-cart.php"><i class="zmdi zmdi-favorite-outline"></i></a>
+				</div>
+				<div class="p-l-15 p-r-10">
+					<div class="image-container">
+						<a href="login-form-v1/Login_v1/php/logout.php">
+							<img src="images/exit.png" alt="" class="annotated-image">
+							<div class="annotation ">Logout</div>
+						</a>
+					</div>
 				</div>
 
 			</div>
@@ -202,17 +217,18 @@ if (!empty($data3)) {
 			<ul class="main-menu-m">
 				<li>
 					<a href="index.php">Home</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+
 				</li>
 
-				<li class="label1" data-label1="New">
-					<a href="product.php">Books</a>
+				<li>
+					<a  class="label1" data-label1="New" href="product.php">Books</a>
 				</li>
 
 				<li>
 					<a href="shoping-cart.php">Wishlist</a>
+				</li>
+				<li>
+					<a href="reservation.php">Reservation</a>
 				</li>
 				<li>
 					<a href="about.php">About</a>
@@ -493,7 +509,7 @@ if (!empty($data3)) {
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">
-					Top Books
+					Best Books
 				</h3>
 			</div>
 
@@ -775,7 +791,7 @@ if (!empty($data3)) {
 									</a>
 
 									<span class="stext-105 cl3">
-										<?= $data4[$i]["PRIX"] ?>
+										<?= $data4[$i]["NOM_AUTEUR"] ?>
 									</span>
 								</div>
 

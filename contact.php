@@ -130,9 +130,8 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-					data-notify="2">
-					<i class="zmdi zmdi-favorite-outline"></i>
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
+					<a href="shoping-cart.php"><i class="zmdi zmdi-favorite-outline"></i></a>
 				</div>
 				<div class="p-l-15">
 					<div class="image-container">
@@ -158,13 +157,10 @@
 			<ul class="main-menu-m">
 				<li>
 					<a href="index.php">Home</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
 				</li>
 
-				<li class="label1" data-label1="New">
-					<a href="product.php">Books</a>
+				<li>
+					<a  class="label1" data-label1="New" href="product.php">Books</a>
 				</li>
 
 				<li>
@@ -379,12 +375,9 @@
 
 	<!-- Map iframe-->
 	<div class="map">
-		<div class="size-303" id="google_map" data-map-x="34.702718" data-map-y="-1.946614" data-scrollwhell="0"
-			data-draggable="1" data-zoom="11"></div>
-	</div>
-
-
-
+	<iframe style="width:100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.8979142713342!2d-1.909929685145988!3d34.65728098044576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd787ca7abf0facf%3A0x5ea075eea8038ba1!2sE.H.E.I+-+Ecole+des+Hautes+Etudes+d'Ing%C3%A9nierie!5e0!3m2!1sfr!2s!4v1490178341380" class="col-xs-10" height="450" frameborder="0" allowfullscreen=""></iframe>
+    </div>
+	
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">

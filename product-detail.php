@@ -124,8 +124,7 @@ $data4 = $stmt2->fetchAll();
 							<i class="zmdi zmdi-search"></i>
 						</div>
 						<a href="shoping-cart.php">
-							<div 
-								class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
 								data-notify="0">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</div>
@@ -156,17 +155,21 @@ $data4 = $stmt2->fetchAll();
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
-
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-					data-notify="2">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
-
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+				<a href="shopping-cart.php"
+					class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
 					data-notify="0">
 					<i class="zmdi zmdi-favorite-outline"></i>
 				</a>
+				<div class="p-l-15 p-r-10">
+					<div class="image-container">
+						<a href="login-form-v1/Login_v1/php/logout.php">
+							<img src="images/exit.png" alt="" class="annotated-image">
+							<div class="annotation ">Logout</div>
+						</a>
+					</div>
+				</div>
 			</div>
+
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -184,23 +187,18 @@ $data4 = $stmt2->fetchAll();
 			<ul class="main-menu-m">
 				<li>
 					<a href="index.php">Home</a>
-					<ul class="sub-menu-m">
-					</ul>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
 				</li>
 
-				<li class="label1" data-label1="New">
-					<a href="product.php">Books</a>
+				<li>
+					<a class="label1" data-label1="New" href="product.php">Books</a>
 				</li>
 
 				<li>
 					<a href="shoping-cart.php">Wishlist</a>
 				</li>
 				<li>
-								<a href="reservation.php">Reservation</a>
-							</li>
+					<a href="reservation.php">Reservation</a>
+				</li>
 				<li>
 					<a href="blog.php">Blog</a>
 				</li>
@@ -416,7 +414,7 @@ $data4 = $stmt2->fetchAll();
 						<?php
 
 						if (isset($_SESSION["livreReserver"])) {
-							if($_SESSION["livreReserver"]==1){
+							if ($_SESSION["livreReserver"] == 1) {
 								?>
 								<script>
 									var link = document.getElementById("ReserverLink");
@@ -425,23 +423,22 @@ $data4 = $stmt2->fetchAll();
 										swal("you have already a reservation ");
 									});
 								</script>
-						<?php	}
-						else {
+							<?php } else {
 
-							?>
+								?>
 
-							<script>
-								var link = document.getElementById("ReserverLink");
-								link.addEventListener("click", function (event) {
+								<script>
+									var link = document.getElementById("ReserverLink");
+									link.addEventListener("click", function (event) {
 
-								});
-							</script>
-							
-							<?php	 } 
+									});
+								</script>
+
+							<?php }
 
 
-						 } 
-						 ?>
+						}
+						?>
 
 
 
