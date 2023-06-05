@@ -1,8 +1,7 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
-$query = "SELECT c.LIBELLE_CATEGORIE,l.TITRE,f.ID_LIVRE,l.COUVERTURE_MIN,a.NOM_AUTEUR FROM categorie c inner join livre l on c.ID_CATEGORIE=l.ID_CATEGORIE inner join favorie f on l.ID_LIVRE=f.ID_LIVRE 
-inner join rediger r on f.ID_LIVRE=r.ID_LIVRE inner join auteur a on r.ID_AUTEUR=a.ID_AUTEUR";
+$query = "SELECT c.LIBELLE_CATEGORIE,l.TITRE,f.ID_LIVRE,l.COUVERTURE_MIN FROM categorie c inner join livre l on c.ID_CATEGORIE=l.ID_CATEGORIE inner join favorie f on l.ID_LIVRE=f.ID_LIVRE";
 $result = $con->query($query);
 $data = $result->fetchAll();
 ?>
@@ -313,7 +312,6 @@ $data = $result->fetchAll();
 									<th class="column-1">Livre</th>
 									<th class="column-1">TITRE</th>
 									<th class="column-1">CATEGORIE</th>
-									<th class="column-1">Auteur</th>
 									<th class="column-1">More</th>
 									<th class="column-1">Delete</th>
 								</tr>
@@ -329,9 +327,6 @@ $data = $result->fetchAll();
 										</td>
 										<td class="column-1">
 											<?= $data[$i]["LIBELLE_CATEGORIE"] ?>
-										</td>
-										<td class="column-1">
-											<?= $data[$i]["NOM_AUTEUR"] ?>
 										</td>
 										<td class="column-1">
 											<div class="p-l-15">

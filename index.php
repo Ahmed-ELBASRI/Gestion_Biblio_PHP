@@ -3,8 +3,8 @@ require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
 $query = "SELECT  c.ID_CATEGORIE,c.photoCategorie,COUNT(*) AS total_count
 FROM categorie c
-INNER JOIN livre l ON c.ID_CATEGORIE = l.ID_CATEGORIE
-INNER JOIN empruntlivre e ON l.ID_LIVRE = e.ID_LIVRE
+INNER JOIN livre l ON c.ID_CATEGORIE = l.ID_CATEGORIE INNER JOIN reserverlivre R 
+ON L.ID_LIVRE = R.ID_LIVRE INNER JOIN empruntlivre e ON R.ID_RESERVATION = e.ID_RESERVATION
 GROUP BY c.ID_CATEGORIE
 ORDER BY total_count DESC
 LIMIT 3;";
@@ -13,10 +13,11 @@ $data = $result->fetchAll();
 // ----------------------
 // ----------------------
 $ID_PERSSONE = $_SESSION["ID_PERSONNE"];
-$query2 = "SELECT c.ID_CATEGORIE,COUNT(*) FROM empruntlivre E INNER JOIN livre L 
-ON E.ID_LIVRE = L.ID_LIVRE INNER JOIN categorie C 
+$query2 = "SELECT c.ID_CATEGORIE,COUNT(*) FROM empruntlivre E INNER JOIN reserverlivre R 
+ON E.ID_RESERVATION = R.ID_RESERVATION INNER JOIN livre L 
+ON R.ID_LIVRE = L.ID_LIVRE INNER JOIN categorie C 
 ON L.ID_CATEGORIE = C.ID_CATEGORIE
-where e.ID_PERSONNE = :ID_PERSONNE
+where R.ID_PERSONNE = :ID_PERSONNE
 GROUP BY C.ID_CATEGORIE
 ORDER BY COUNT(*) DESC
 LIMIT 1";
@@ -33,9 +34,10 @@ if (!empty($data3)) {
 		$stmt->execute(array(":ID_CATEGORIE" => $data3["ID_CATEGORIE"]));
 		$data4 = $stmt->fetchAll();
 	} else {
-		$top_books = "SELECT l.*, COUNT(*) FROM empruntlivre e INNER JOIN livre l 
-		ON e.ID_LIVRE = l.ID_LIVRE
-		GROUP BY e.ID_LIVRE
+		$top_books = "SELECT l.*, COUNT(*) FROM empruntlivre E  INNER JOIN reserverlivre R
+		ON E.ID_RESERVATION = R.ID_RESERVATION INNER JOIN livre l 
+		ON R.ID_LIVRE = l.ID_LIVRE
+		GROUP BY l.ID_LIVRE
 		ORDER BY COUNT(*) DESC
 		LIMIT 8";
 		$stmt = $con->prepare("$top_books");

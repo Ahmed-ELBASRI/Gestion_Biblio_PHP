@@ -3,24 +3,24 @@ require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
 $id = $_GET["id"];
 $query = "select * from livre where ID_LIVRE = :id";
-
 $stmt = $con->prepare($query);
 $stmt->execute(array(":id" => $id));
 $data = $stmt->fetch();
 $query1 = "select * from rediger r inner join auteur a on r.ID_AUTEUR=a.ID_AUTEUR where r.ID_LIVRE = :id";
-$stmt = $con->prepare($query1);
-$stmt->execute(array(":id" => $id));
-$data1 = $stmt->fetchAll();
+$stmt1 = $con->prepare($query1);
+$stmt1->execute(array(":id" => $id));
+$data1 = $stmt1->fetchAll();
 //----------------------------
-$query2 = "SELECT l.*, COUNT(*) FROM empruntlivre e INNER JOIN livre l 
-ON e.ID_LIVRE = l.ID_LIVRE
+$query2 = "SELECT l.*, COUNT(*) FROM empruntlivre E INNER JOIN reserverlivre R 
+ON E.ID_RESERVATION = R.ID_RESERVATION INNER JOIN livre l 
+ON R.ID_LIVRE = l.ID_LIVRE
 WHERE l.ID_CATEGORIE= :ID_CATEGORIE AND l.ID_LIVRE <> :ID_LIVRE
-GROUP BY e.ID_LIVRE
+GROUP BY l.ID_LIVRE
 ORDER BY COUNT(*) DESC
 LIMIT 8";
-$stmt = $con->prepare($query2);
-$stmt->execute(array(":ID_CATEGORIE" => $data["ID_CATEGORIE"], ":ID_LIVRE" => $id));
-$data4 = $stmt->fetchAll();
+$stmt2 = $con->prepare($query2);
+$stmt2->execute(array(":ID_CATEGORIE" => $data["ID_CATEGORIE"], ":ID_LIVRE" => $id));
+$data4 = $stmt2->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -434,7 +434,8 @@ $data4 = $stmt->fetchAll();
 							<?php	 } 
 
 
-						 } ?>
+						 } 
+						 ?>
 
 
 
