@@ -96,9 +96,6 @@ $data4 = $stmt2->fetchAll();
 								<a href="reservation.php">Reservation</a>
 							</li>
 							<li>
-								<a href="reservation.php">Reservation</a>
-							</li>
-							<li>
 								<a href="about.php">About</a>
 							</li>
 

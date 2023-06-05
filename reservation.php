@@ -381,7 +381,7 @@ $data = $result->fetchAll();
 											<div class="p-l-15">
 												<div class="image-container">
 													<a href="product-detail.php?id=<?= $data[$i]["ID_LIVRE"] ?>">
-														<img src="images/more.png" alt="more informations"
+														<img src="images/pop_out.png" alt="more informations"
 															class="annotated-image">
 													</a>
 												</div>
