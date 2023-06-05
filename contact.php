@@ -67,6 +67,9 @@
 							<a href="shoping-cart.php">Wishlist</a>
 						</li>
 						<li>
+							<a href="reservation.php">Reservation</a>
+						</li>
+						<li>
 							<a href="about.php">About</a>
 						</li>
 
@@ -158,12 +161,15 @@
 					</span>
 				</li>
 
-				<li class="label1" data-label1="New"> 
+				<li class="label1" data-label1="New">
 					<a href="product.php">Books</a>
 				</li>
 
 				<li>
 					<a href="shoping-cart.php">Wishlist</a>
+				</li>
+				<li>
+					<a href="reservation.php">Reservation</a>
 				</li>
 				<li>
 					<a href="about.php">About</a>

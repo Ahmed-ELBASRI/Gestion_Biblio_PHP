@@ -37,8 +37,6 @@ if (isset($_POST["email"])) {
 			}else{
 				$_SESSION["livreReserver"]=1;
 			}
-			
-
 			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();
