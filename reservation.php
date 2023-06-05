@@ -78,7 +78,9 @@ $data = $result->fetchAll();
 							<li>
 								<a href="shoping-cart.php">Wishlist</a>
 							</li>
-
+							<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
 							<li>
 								<a href="about.php">About</a>
 							</li>
@@ -178,7 +180,9 @@ $data = $result->fetchAll();
 				<li>
 					<a href="shoping-cart.php">Wishlist</a>
 				</li>
-
+				<li>
+					<a href="reservation.php">Reservation</a>
+				</li>
 				<li>
 					<a href="about.php">About</a>
 				</li>

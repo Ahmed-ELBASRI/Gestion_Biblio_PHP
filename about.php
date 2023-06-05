@@ -62,6 +62,9 @@ require("VerficationAuth.php");
 						<li>
 							<a href="shoping-cart.php">Wishlist</a>
 						</li>
+						<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
 						<li class="active-menu">
 							<a href="about.php">About</a>
 						</li>
@@ -152,6 +155,9 @@ require("VerficationAuth.php");
 				<li>
 					<a href="shoping-cart.php">Wishlist</a>
 				</li>
+				<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
 				<li>
 					<a href="about.php">About</a>
 				</li>

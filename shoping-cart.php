@@ -76,7 +76,9 @@ $data = $stmt->fetchAll();
 							<li>
 								<a href="shoping-cart.php">Wishlist</a>
 							</li>
-
+							<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
 							<li>
 								<a href="about.php">About</a>
 							</li>
@@ -176,7 +178,9 @@ $data = $stmt->fetchAll();
 				<li>
 					<a href="shoping-cart.php">Wishlist</a>
 				</li>
-
+				<li>
+					<a href="reservation.php">Reservation</a>
+				</li>
 				<li>
 					<a href="about.php">About</a>
 				</li>
@@ -337,7 +341,7 @@ $data = $stmt->fetchAll();
 											<?= $data[$i]["LIBELLE_CATEGORIE"] ?>
 										</td>
 										<td class="column-1">
-										<?= $data[$i]["NOM_AUTEUR"] ?>
+											<?= $data[$i]["NOM_AUTEUR"] ?>
 										</td>
 										<td class="column-1">
 											<div class="p-l-15">
