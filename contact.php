@@ -377,12 +377,9 @@
 
 	<!-- Map iframe-->
 	<div class="map">
-		<div class="size-303" id="google_map" data-map-x="34.702718" data-map-y="-1.946614" data-scrollwhell="0"
-			data-draggable="1" data-zoom="11"></div>
-	</div>
-
-
-
+	<iframe style="width:100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.8979142713342!2d-1.909929685145988!3d34.65728098044576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd787ca7abf0facf%3A0x5ea075eea8038ba1!2sE.H.E.I+-+Ecole+des+Hautes+Etudes+d'Ing%C3%A9nierie!5e0!3m2!1sfr!2s!4v1490178341380" class="col-xs-10" height="450" frameborder="0" allowfullscreen=""></iframe>
+    </div>
+	
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
