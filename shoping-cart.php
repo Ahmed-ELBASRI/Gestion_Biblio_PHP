@@ -1,9 +1,16 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
-$query = "SELECT c.LIBELLE_CATEGORIE,l.TITRE,f.ID_LIVRE,l.COUVERTURE_MIN FROM categorie c inner join livre l on c.ID_CATEGORIE=l.ID_CATEGORIE inner join favorie f on l.ID_LIVRE=f.ID_LIVRE";
-$result = $con->query($query);
-$data = $result->fetchAll();
+$ID_PERSONNE = $_SESSION["ID_PERSONNE"];
+$query = "SELECT c.LIBELLE_CATEGORIE,L.TITRE,f.ID_LIVRE,L.COUVERTURE_MIN, GROUP_CONCAT(A.NOM_AUTEUR SEPARATOR ', ') AS NOM_AUTEUR FROM categorie c inner join livre L 
+ON c.ID_CATEGORIE = L.ID_CATEGORIE INNER JOIN rediger R 
+ON L.ID_LIVRE = R.ID_LIVRE INNER JOIN auteur A 
+ON R.ID_AUTEUR = A.ID_AUTEUR  inner join favorie f 
+on L.ID_LIVRE=f.ID_LIVRE where f.ID_PERSONNE = :ID_PERSONNE
+GROUP BY f.ID_LIVRE";
+$stmt = $con->prepare($query);
+$stmt->execute(array(":ID_PERSONNE" => $ID_PERSONNE));
+$data = $stmt->fetchAll();
 ?>
 <html lang="en">
 
@@ -69,7 +76,9 @@ $data = $result->fetchAll();
 							<li>
 								<a href="shoping-cart.php">Wishlist</a>
 							</li>
-
+							<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
 							<li>
 								<a href="about.php">About</a>
 							</li>
@@ -169,7 +178,9 @@ $data = $result->fetchAll();
 				<li>
 					<a href="shoping-cart.php">Wishlist</a>
 				</li>
-
+				<li>
+					<a href="reservation.php">Reservation</a>
+				</li>
 				<li>
 					<a href="about.php">About</a>
 				</li>
@@ -312,6 +323,7 @@ $data = $result->fetchAll();
 									<th class="column-1">Livre</th>
 									<th class="column-1">TITRE</th>
 									<th class="column-1">CATEGORIE</th>
+									<th class="column-1">AUTEUR</th>
 									<th class="column-1">More</th>
 									<th class="column-1">Delete</th>
 								</tr>
@@ -327,6 +339,9 @@ $data = $result->fetchAll();
 										</td>
 										<td class="column-1">
 											<?= $data[$i]["LIBELLE_CATEGORIE"] ?>
+										</td>
+										<td class="column-1">
+											<?= $data[$i]["NOM_AUTEUR"] ?>
 										</td>
 										<td class="column-1">
 											<div class="p-l-15">
