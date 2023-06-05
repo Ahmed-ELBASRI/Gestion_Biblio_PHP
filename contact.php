@@ -130,9 +130,8 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-					data-notify="2">
-					<i class="zmdi zmdi-favorite-outline"></i>
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
+					<a href="shoping-cart.php"><i class="zmdi zmdi-favorite-outline"></i></a>
 				</div>
 				<div class="p-l-15">
 					<div class="image-container">
@@ -158,13 +157,10 @@
 			<ul class="main-menu-m">
 				<li>
 					<a href="index.php">Home</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
 				</li>
 
-				<li class="label1" data-label1="New">
-					<a href="product.php">Books</a>
+				<li>
+					<a  class="label1" data-label1="New" href="product.php">Books</a>
 				</li>
 
 				<li>

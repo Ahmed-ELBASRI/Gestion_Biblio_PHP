@@ -171,13 +171,11 @@ $data = $result->fetchAll();
 			<ul class="main-menu-m">
 				<li>
 					<a href="index.php">Home</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+
 				</li>
 
-				<li class="label1" data-label1="New">
-					<a href="product.php">Books</a>
+				<li>
+					<a class="label1" data-label1="New" href="product.php">Books</a>
 				</li>
 
 				<li>

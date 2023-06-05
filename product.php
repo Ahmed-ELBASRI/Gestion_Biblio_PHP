@@ -1,25 +1,24 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
-if(isset($_GET["search"])){
-	$search =$_GET["search"];
-	if(!empty($search)){
-		
+if (isset($_GET["search"])) {
+	$search = $_GET["search"];
+	if (!empty($search)) {
+
 		$query = "SELECT * FROM livre WHERE TITRE LIKE :searchValue";
 
-			// Prepare the statement
-			$statement = $con->prepare($query);
+		// Prepare the statement
+		$statement = $con->prepare($query);
 
-			// Bind the search value to the placeholder
-			$statement->bindValue(':searchValue', '%' . $search . '%');
+		// Bind the search value to the placeholder
+		$statement->bindValue(':searchValue', '%' . $search . '%');
 
-			// Execute the statement
-			$statement->execute();
-			$data = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// Execute the statement
+		$statement->execute();
+		$data = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 	}
-}
-else{
+} else {
 	$query = "SELECT L.*, GROUP_CONCAT(A.NOM_AUTEUR SEPARATOR ',') AS NOM_AUTEUR
 	FROM livre L
 	INNER JOIN rediger R ON L.ID_LIVRE = R.ID_LIVRE
@@ -152,8 +151,7 @@ if (isset($_GET["idLivre"])) {
 							<i class="zmdi zmdi-search"></i>
 						</div>
 						<a href="shoping-cart.php">
-							<div 
-								class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
 								data-notify="0">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</div>
@@ -183,10 +181,17 @@ if (isset($_GET["idLivre"])) {
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-					data-notify="0">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
 					<a href="shoping-cart.php"><i class="zmdi zmdi-favorite-outline"></i></a>
-				</a>
+				</div>
+				<div class="p-l-15 p-r-10">
+					<div class="image-container">
+						<a href="login-form-v1/Login_v1/php/logout.php">
+							<img src="images/exit.png" alt="" class="annotated-image">
+							<div class="annotation ">Logout</div>
+						</a>
+					</div>
+				</div>
 			</div>
 
 			<!-- Button show menu -->
@@ -203,21 +208,18 @@ if (isset($_GET["idLivre"])) {
 			<ul class="main-menu-m">
 				<li>
 					<a href="index.php">Home</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
 				</li>
 
-				<li class="label1" data-label1="New">
-					<a href="product.php">Books</a>
+				<li >
+					<a  class="label1" data-label1="New" href="product.php">Books</a>
 				</li>
 
 				<li>
 					<a href="shoping-cart.php">Wishlist</a>
 				</li>
 				<li>
-								<a href="reservation.php">Reservation</a>
-							</li>
+					<a href="reservation.php">Reservation</a>
+				</li>
 
 				<li>
 					<a href="about.php">About</a>
@@ -345,7 +347,10 @@ if (isset($_GET["idLivre"])) {
 					</button>
 					<?php
 					require_once "login-form-v1/Login_v1/php/connection.php";
-					$query = "select * from categorie";
+					$query = "SELECT DISTINCT L.ID_CATEGORIE, C.LIBELLE_CATEGORIE FROM categorie C INNER JOIN livre L 
+					ON C.ID_CATEGORIE = L.ID_CATEGORIE INNER JOIN rediger R 
+					ON L.ID_LIVRE = R.ID_LIVRE INNER JOIN auteur A 
+					ON R.ID_AUTEUR = A.ID_AUTEUR";
 					$Stm = $con->query($query);
 					$data1 = $Stm->fetchAll(PDO::FETCH_ASSOC);
 					//print_r($data1);
@@ -974,7 +979,7 @@ if (isset($_GET["idLivre"])) {
 		<script src="vendor/sweetalert/sweetalert.min.js"></script>
 		<script>
 			$('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
-					e.preventDefault();
+				e.preventDefault();
 			});
 
 			$('.js-addwish-b2').each(function () {
@@ -1001,31 +1006,31 @@ if (isset($_GET["idLivre"])) {
 					}
 				}
 
-					//for wishlist number
-					$.ajax({
-  				url: 'getNumberWishlist.php',
-						method: 'GET',
-						dataType: 'json',
-						success: function(response) {
-							// Iterate over the PHP array using JavaScript
-							//console.log(response);
-							//console.log(response.nbr);
-							if (response && response.nbr) {
-								var value = response.nbr;
-								console.log('Retrieved value:', value);
-								var stringValue = '' + value;
-								$('.js-show-cart').attr('data-notify', stringValue);
-								} else {
-								console.log('Empty response or missing value in JSON');
-								$('.js-show-cart').attr('data-notify', '0');
-								}
-							
-						},
-						error: function(xhr, status, error) {
-							console.log(xhr.responseText);
+				//for wishlist number
+				$.ajax({
+					url: 'getNumberWishlist.php',
+					method: 'GET',
+					dataType: 'json',
+					success: function (response) {
+						// Iterate over the PHP array using JavaScript
+						//console.log(response);
+						//console.log(response.nbr);
+						if (response && response.nbr) {
+							var value = response.nbr;
+							console.log('Retrieved value:', value);
+							var stringValue = '' + value;
+							$('.js-show-cart').attr('data-notify', stringValue);
+						} else {
+							console.log('Empty response or missing value in JSON');
+							$('.js-show-cart').attr('data-notify', '0');
 						}
-						});
-					//
+
+					},
+					error: function (xhr, status, error) {
+						console.log(xhr.responseText);
+					}
+				});
+				//
 
 				//$(this).addClass('js-addedwish-b2');
 				// check is the heart is checked in bd
@@ -1104,15 +1109,15 @@ if (isset($_GET["idLivre"])) {
 							}
 						});
 						swal(nameProduct, "is removed from the wishlist!", "success");
-						
-					/*	var nbrWish = $('.js-show-cart').data('notify');
-						nbrWish--;
-						var stringValue = '' + nbrWish;
-						$('.js-show-cart').attr('data-notify', stringValue);*/
 
-				
+						/*	var nbrWish = $('.js-show-cart').data('notify');
+							nbrWish--;
+							var stringValue = '' + nbrWish;
+							$('.js-show-cart').attr('data-notify', stringValue);*/
 
-						
+
+
+
 
 						$(this).removeClass('js-addedwish-b2');
 						isAdded = false;
@@ -1142,42 +1147,42 @@ if (isset($_GET["idLivre"])) {
 						});
 
 
-					/*	var nbrWish = parseInt($('.js-show-cart').data('notify'), 10);
-						var nbr2=	nbrWish + 1;
-						var stringValue1 = '' + nbr2;
-						console.log('Data type:', typeof nbrWish);
-						console.log("nombre wish is" + nbr2);
-						console.log("nombre wish is" + stringValue1);
-						$('.js-show-cart').attr('data-notify', stringValue1);*/
+						/*	var nbrWish = parseInt($('.js-show-cart').data('notify'), 10);
+							var nbr2=	nbrWish + 1;
+							var stringValue1 = '' + nbr2;
+							console.log('Data type:', typeof nbrWish);
+							console.log("nombre wish is" + nbr2);
+							console.log("nombre wish is" + stringValue1);
+							$('.js-show-cart').attr('data-notify', stringValue1);*/
 						swal(nameProduct, "is added to the wishlist!", "success");
-					
 
-				/*		$.ajax({
-  				url: 'getNumberWishlist.php',
-						method: 'GET',
-						dataType: 'json',
-						success: function(response) {
-							// Iterate over the PHP array using JavaScript
-							//console.log(response);
-							//console.log(response.nbr);
-							if (response && response.nbr) {
-								var value = response.nbr;
-								console.log('Retrieved value: for number', value);
-								var stringValue = '' + value;
-								$('.js-show-cart').attr('data-notify', stringValue);
-								} else {
-								console.log('Empty response or missing value in JSON');
-								$('.js-show-cart').attr('data-notify', '0');
+
+						/*		$.ajax({
+							url: 'getNumberWishlist.php',
+								method: 'GET',
+								dataType: 'json',
+								success: function(response) {
+									// Iterate over the PHP array using JavaScript
+									//console.log(response);
+									//console.log(response.nbr);
+									if (response && response.nbr) {
+										var value = response.nbr;
+										console.log('Retrieved value: for number', value);
+										var stringValue = '' + value;
+										$('.js-show-cart').attr('data-notify', stringValue);
+										} else {
+										console.log('Empty response or missing value in JSON');
+										$('.js-show-cart').attr('data-notify', '0');
+										}
+									
+								},
+								error: function(xhr, status, error) {
+									console.log(xhr.responseText);
 								}
-							
-						},
-						error: function(xhr, status, error) {
-							console.log(xhr.responseText);
-						}
-						});*/
+								});*/
 						$(this).addClass('js-addedwish-b2');
 
-							
+
 
 
 						isAdded = true;
@@ -1252,26 +1257,26 @@ if (isset($_GET["idLivre"])) {
 
 		<script>
 
-</script>
+		</script>
 
 
-<script>
+		<script>
 
-$(document).ready(function() {
-  $('input[name="search-product"]').on('keyup', function(event) {
-    if (event.keyCode === 13) {
-      // Get the input value
-      var searchValue = $(this).val();
-      
-      // Construct the query string based on the input value
-      var queryString = 'search=' + encodeURIComponent(searchValue);
-      
-      // Redirect the user to another page with the query string
-      window.location.href = 'product.php?' + queryString;
-    }
-  });
-});
-</script>
+			$(document).ready(function () {
+				$('input[name="search-product"]').on('keyup', function (event) {
+					if (event.keyCode === 13) {
+						// Get the input value
+						var searchValue = $(this).val();
+
+						// Construct the query string based on the input value
+						var queryString = 'search=' + encodeURIComponent(searchValue);
+
+						// Redirect the user to another page with the query string
+						window.location.href = 'product.php?' + queryString;
+					}
+				});
+			});
+		</script>
 
 
 
