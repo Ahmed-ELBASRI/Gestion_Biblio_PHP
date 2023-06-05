@@ -96,9 +96,6 @@ $data4 = $stmt2->fetchAll();
 								<a href="reservation.php">Reservation</a>
 							</li>
 							<li>
-								<a href="reservation.php">Reservation</a>
-							</li>
-							<li>
 								<a href="about.php">About</a>
 							</li>
 
@@ -126,12 +123,14 @@ $data4 = $stmt2->fetchAll();
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
-
-						<a href="#"
-							class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti js-show-cart"
-							data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
+						<a href="shoping-cart.php">
+							<div 
+								class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+								data-notify="0">
+								<i class="zmdi zmdi-favorite-outline"></i>
+							</div>
 						</a>
+
 						<div class="p-l-15">
 							<div class="image-container">
 								<a href="login-form-v1/Login_v1/php/logout.php">

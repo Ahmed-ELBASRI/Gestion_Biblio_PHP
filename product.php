@@ -151,10 +151,12 @@ if (isset($_GET["idLivre"])) {
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
-						<a href="#"
-							class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti js-show-cart"
-							data-notify="1">
-							<i class="zmdi zmdi-favorite-outline"></i>
+						<a href="shoping-cart.php">
+							<div 
+								class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+								data-notify="0">
+								<i class="zmdi zmdi-favorite-outline"></i>
+							</div>
 						</a>
 						<div class="p-l-15">
 							<div class="image-container">
@@ -181,15 +183,9 @@ if (isset($_GET["idLivre"])) {
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
-
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-					data-notify="2">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
-
 				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
 					data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
+					<a href="shoping-cart.php"><i class="zmdi zmdi-favorite-outline"></i></a>
 				</a>
 			</div>
 
