@@ -123,9 +123,9 @@ $data4 = $stmt2->fetchAll();
 						</div>
 
 						<a href="#"
-							class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti js-show-cart"
+							class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
 							data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
+							<a href="shoping-cart.php"><i class="zmdi zmdi-favorite-outline"></i></a>
 						</a>
 						<div class="p-l-15">
 							<div class="image-container">
