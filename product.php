@@ -20,7 +20,11 @@ if(isset($_GET["search"])){
 	}
 }
 else{
-	$query = "select * from livre";
+	$query = "SELECT L.*, GROUP_CONCAT(A.NOM_AUTEUR SEPARATOR ',') AS NOM_AUTEUR
+	FROM livre L
+	INNER JOIN rediger R ON L.ID_LIVRE = R.ID_LIVRE
+	INNER JOIN auteur A ON R.ID_AUTEUR = A.ID_AUTEUR
+	GROUP BY L.ID_LIVRE;";
 	$result = $con->query($query);
 	$data = $result->fetchAll();
 }
@@ -337,7 +341,7 @@ if (isset($_GET["idLivre"])) {
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
+						All Books
 					</button>
 					<?php
 					require_once "login-form-v1/Login_v1/php/connection.php";
@@ -636,7 +640,7 @@ if (isset($_GET["idLivre"])) {
 									</a>
 
 									<span class="stext-105 cl3">
-										<?= $data[$i]["PRIX"] ?>
+										<?= $data[$i]["NOM_AUTEUR"] ?>
 									</span>
 								</div>
 

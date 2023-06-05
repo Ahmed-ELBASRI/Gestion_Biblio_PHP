@@ -1,12 +1,12 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
-$query = "SELECT c.LIBELLE_CATEGORIE,l.TITRE,r.ID_LIVRE,l.COUVERTURE_MIN,r.DATERESERVATION,r.ETAT FROM categorie c inner join livre l on c.ID_CATEGORIE=l.ID_CATEGORIE inner join reserverlivre r on l.ID_LIVRE=r.ID_LIVRE WHERE R.ID_PERSONNE = :ID_PERSONNE ";
+$query = "SELECT c.LIBELLE_CATEGORIE,l.TITRE,r.ID_LIVRE,l.COUVERTURE_MIN,r.DATERESERVATION,r.ETAT FROM categorie c inner join livre l on c.ID_CATEGORIE=l.ID_CATEGORIE inner join reserverlivre r on l.ID_LIVRE=r.ID_LIVRE WHERE R.ID_PERSONNE = :ID_PERSONNE 
+ORDER BY r.DATERESERVATION DESC";
 $ID_PERSONNE = $_SESSION["ID_PERSONNE"];
 $result = $con->prepare($query);
 $result->execute(array(":ID_PERSONNE" => $ID_PERSONNE));
 $data = $result->fetchAll();
-print_r($_SESSION);
 ?>
 <html lang="en">
 
@@ -39,6 +39,12 @@ print_r($_SESSION);
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" href="css/annotation.css">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- JavaScript -->
+	<script type="text/javascript" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
 
 </head>
 
@@ -310,7 +316,7 @@ print_r($_SESSION);
 				<div class="col-lg-10 col-xl-9 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
-							<table class="table-shopping-cart">
+							<table id="myTable" class="table-shopping-cart">
 								<tr class="table_head">
 									<th class="column-1">Livre</th>
 									<th class="column-1">Titre</th>
@@ -349,6 +355,7 @@ print_r($_SESSION);
 															<img src="images/annuler.png" alt="" class="annotated-image">
 														</a>
 													</div>
+												</div>
 											</td>
 											<?php
 										} else {
@@ -360,6 +367,7 @@ print_r($_SESSION);
 															<img src="images/annuler.png" alt="" class="annotated-image">
 														</a>
 													</div>
+												</div>
 											</td>
 											<?php
 										}
@@ -373,8 +381,8 @@ print_r($_SESSION);
 															class="annotated-image">
 													</a>
 												</div>
+											</div>
 										</td>
-
 									</tr>
 								<?php } ?>
 							</table>
@@ -522,7 +530,11 @@ print_r($_SESSION);
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-
+	<script>
+		$(document).ready(function () {
+			$('#myTable').DataTable();
+		});
+	</script>
 	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -561,6 +573,7 @@ print_r($_SESSION);
 	</script>
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
 
 </body>
 

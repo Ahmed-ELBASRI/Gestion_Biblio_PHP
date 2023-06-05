@@ -116,15 +116,16 @@ if (!empty($data3)) {
 								<a href="shoping-cart.php">Wishlist</a>
 							</li>
 							<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
+							<li>
 								<a href="about.php">About</a>
 							</li>
 
 							<li>
 								<a href="contact.php">Contact</a>
 							</li>
-							<li>
-								<a href="reservation.php">Reservation</a>
-							</li>
+
 							<!-- display dashboard link  for admin  -->
 							<?php
 
@@ -519,7 +520,7 @@ if (!empty($data3)) {
 					?>
 				</div>
 
-				<div class="flex-w flex-c-m m-tb-10">
+				<!-- <div class="flex-w flex-c-m m-tb-10">
 					<div
 						class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
@@ -534,7 +535,7 @@ if (!empty($data3)) {
 					</div>
 				</div>
 
-				<!-- Search product -->
+				Search product
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
@@ -544,10 +545,10 @@ if (!empty($data3)) {
 						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product"
 							placeholder="Search">
 					</div>
-				</div>
+				</div> -->
 
 				<!-- Filter -->
-				<div class="dis-none panel-filter w-full p-t-10">
+				<!-- <div class="dis-none panel-filter w-full p-t-10">
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
@@ -738,7 +739,7 @@ if (!empty($data3)) {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 
 			<div class="row isotope-grid">
