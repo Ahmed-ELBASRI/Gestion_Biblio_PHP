@@ -71,19 +71,6 @@ require("VerficationAuth.php");
 						<li>
 							<a href="contact.php">Contact</a>
 						</li>
-						<?php
-
-						if (isset($_SESSION["role"])) {
-							$role = $_SESSION["role"];
-							if ($role == 'admin') {
-								?>
-								<li>
-									<a href="dashboard/public/index.php">dashboard</a>
-								</li>
-								<?php
-							}
-						}
-						?>
 					</ul>
 				</div>
 
