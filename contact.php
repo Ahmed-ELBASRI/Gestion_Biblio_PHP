@@ -45,62 +45,64 @@
 	<header class="header-v4">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
-			<nav class="limiter-menu-desktop container">
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
 
-				<!-- Logo desktop -->
-				<a href="index.php" class="logo">
-					<img src="images/icons/logo-01.png" alt="IMG-LOGO">
-				</a>
+					<!-- Logo desktop -->
+					<a href="index.php" class="logo">
+						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>
 
-				<!-- Menu desktop -->
-				<div class="menu-desktop">
-					<ul class="main-menu">
-						<li>
-							<a href="index.php">Home</a>
-						</li>
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li>
+								<a href="index.php">Home</a>
+							</li>
 
-						<li class="label1" data-label1="New">
-							<a href="product.php">Books</a>
-						</li>
+							<li class="label1" data-label1="New">
+								<a href="product.php">Books</a>
+							</li>
 
-						<li>
-							<a href="shoping-cart.php">Wishlist</a>
-						</li>
-						<li>
-							<a href="reservation.php">Reservation</a>
-						</li>
-						<li>
-							<a href="about.php">About</a>
-						</li>
+							<li>
+								<a href="shoping-cart.php">Wishlist</a>
+							</li>
+							<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
+							<li>
+								<a href="about.php">About</a>
+							</li>
 
-						<li class="active-menu">
-							<a href="contact.php">Contact</a>
-						</li>
-					</ul>
-				</div>
-
-				<!-- Icon header -->
-				<div class="wrap-icon-header flex-w flex-r-m">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-						<i class="zmdi zmdi-search"></i>
+							<li class="active-menu">
+								<a href="contact.php">Contact</a>
+							</li>
+						</ul>
 					</div>
-					<a href="shoping-cart.php">
-							<div 
-								class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+						<a href="shoping-cart.php">
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
 								data-notify="0">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</div>
 						</a>
-					<div class="p-l-15">
-						<div class="image-container">
-							<a href="login-form-v1/Login_v1/php/logout.php">
-								<img src="images/exit.png" alt="" class="annotated-image">
-								<div class="annotation ">Logout</div>
-							</a>
+						<div class="p-l-15">
+							<div class="image-container">
+								<a href="login-form-v1/Login_v1/php/logout.php">
+									<img src="images/exit.png" alt="" class="annotated-image">
+									<div class="annotation ">Logout</div>
+								</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			</nav>
+				</nav>
+			</div>
+
 		</div>
 		</div>
 
@@ -147,7 +149,7 @@
 				</li>
 
 				<li>
-					<a  class="label1" data-label1="New" href="product.php">Books</a>
+					<a class="label1" data-label1="New" href="product.php">Books</a>
 				</li>
 
 				<li>
@@ -362,9 +364,11 @@
 
 	<!-- Map iframe-->
 	<div class="map">
-	<iframe style="width:100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.8979142713342!2d-1.909929685145988!3d34.65728098044576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd787ca7abf0facf%3A0x5ea075eea8038ba1!2sE.H.E.I+-+Ecole+des+Hautes+Etudes+d'Ing%C3%A9nierie!5e0!3m2!1sfr!2s!4v1490178341380" class="col-xs-10" height="450" frameborder="0" allowfullscreen=""></iframe>
-    </div>
-	
+		<iframe style="width:100%;"
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.8979142713342!2d-1.909929685145988!3d34.65728098044576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd787ca7abf0facf%3A0x5ea075eea8038ba1!2sE.H.E.I+-+Ecole+des+Hautes+Etudes+d'Ing%C3%A9nierie!5e0!3m2!1sfr!2s!4v1490178341380"
+			class="col-xs-10" height="450" frameborder="0" allowfullscreen=""></iframe>
+	</div>
+
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
