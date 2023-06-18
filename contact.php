@@ -45,75 +45,64 @@
 	<header class="header-v4">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
-			<nav class="limiter-menu-desktop container">
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
 
-				<!-- Logo desktop -->
-				<a href="index.php" class="logo">
-					<img src="images/icons/logo-01.png" alt="IMG-LOGO">
-				</a>
+					<!-- Logo desktop -->
+					<a href="index.php" class="logo">
+						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>
 
-				<!-- Menu desktop -->
-				<div class="menu-desktop">
-					<ul class="main-menu">
-						<li>
-							<a href="index.php">Home</a>
-						</li>
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li>
+								<a href="index.php">Home</a>
+							</li>
 
-						<li class="label1" data-label1="New">
-							<a href="product.php">Books</a>
-						</li>
+							<li class="label1" data-label1="New">
+								<a href="product.php">Books</a>
+							</li>
 
-						<li>
-							<a href="shoping-cart.php">Wishlist</a>
-						</li>
-						<li>
-							<a href="reservation.php">Reservation</a>
-						</li>
-						<li>
-							<a href="about.php">About</a>
-						</li>
+							<li>
+								<a href="shoping-cart.php">Wishlist</a>
+							</li>
+							<li>
+								<a href="reservation.php">Reservation</a>
+							</li>
+							<li>
+								<a href="about.php">About</a>
+							</li>
 
-						<li class="active-menu">
-							<a href="contact.php">Contact</a>
-						</li>
-						<?php
-
-						if (isset($_SESSION["role"])) {
-							$role = $_SESSION["role"];
-							if ($role == 'admin') {
-								?>
-								<li>
-									<a href="dashboard/public/index.php">dashboard</a>
-								</li>
-								<?php
-							}
-						}
-						?>
-					</ul>
-				</div>
-
-				<!-- Icon header -->
-				<div class="wrap-icon-header flex-w flex-r-m">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-						<i class="zmdi zmdi-search"></i>
+							<li class="active-menu">
+								<a href="contact.php">Contact</a>
+							</li>
+						</ul>
 					</div>
-					<a href="shoping-cart.php">
-							<div 
-								class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+						<a href="shoping-cart.php">
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
 								data-notify="0">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</div>
 						</a>
-					<div class="p-l-15">
-						<div class="image-container">
-							<a href="login-form-v1/Login_v1/php/logout.php">
-								<img src="images/exit.png" alt="" class="annotated-image">
-								<div class="annotation ">Logout</div>
-							</a>
+						<div class="p-l-15">
+							<div class="image-container">
+								<a href="login-form-v1/Login_v1/php/logout.php">
+									<img src="images/exit.png" alt="" class="annotated-image">
+									<div class="annotation ">Logout</div>
+								</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			</nav>
+				</nav>
+			</div>
+
 		</div>
 		</div>
 
@@ -160,7 +149,7 @@
 				</li>
 
 				<li>
-					<a  class="label1" data-label1="New" href="product.php">Books</a>
+					<a class="label1" data-label1="New" href="product.php">Books</a>
 				</li>
 
 				<li>

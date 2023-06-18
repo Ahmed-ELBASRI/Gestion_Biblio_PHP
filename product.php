@@ -129,19 +129,6 @@ if (isset($_GET["idLivre"])) {
 							<li>
 								<a href="contact.php">Contact</a>
 							</li>
-							<?php
-
-							if (isset($_SESSION["role"])) {
-								$role = $_SESSION["role"];
-								if ($role == 'admin') {
-									?>
-									<li>
-										<a href="dashboard/public/index.php">dashboard</a>
-									</li>
-									<?php
-								}
-							}
-							?>
 						</ul>
 					</div>
 
@@ -151,7 +138,7 @@ if (isset($_GET["idLivre"])) {
 							<i class="zmdi zmdi-search"></i>
 						</div>
 						<a href="shoping-cart.php">
-							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti js-show-cart"
 								data-notify="0">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</div>
