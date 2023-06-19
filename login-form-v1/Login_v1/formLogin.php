@@ -83,7 +83,7 @@ if (isset($_POST["email"])) {
 
 				<form class="login100-form validate-form" action="#" method="post">
 					<span class="login100-form-title">
-						Member Login
+						Espace Bibliothèque
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
@@ -95,7 +95,7 @@ if (isset($_POST["email"])) {
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="pass" placeholder="Mot de passe">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -104,7 +104,7 @@ if (isset($_POST["email"])) {
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Se connecter
 						</button>
 					</div>
 
