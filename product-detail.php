@@ -26,7 +26,7 @@ $data4 = $stmt2->fetchAll();
 <html lang="en">
 
 <head>
-	<title>Product Detail</title>
+	<title>Details livre</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -82,21 +82,21 @@ $data4 = $stmt2->fetchAll();
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.php">Home</a>
+								<a href="index.php">Acceuil</a>
 							</li>
 
 							<li class="label1" data-label1="New">
-								<a href="product.php">Books</a>
+								<a href="product.php">Livres</a>
 							</li>
 
 							<li>
-								<a href="shoping-cart.php">Wishlist</a>
+								<a href="empruntlivre.php">Emprunts</a>
 							</li>
 							<li>
-								<a href="reservation.php">Reservation</a>
+								<a href="reservation.php">Reservations</a>
 							</li>
 							<li>
-								<a href="about.php">About</a>
+								<a href="about.php">À propos</a>
 							</li>
 
 							<li>
@@ -173,25 +173,21 @@ $data4 = $stmt2->fetchAll();
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.php">Home</a>
+					<a href="index.php">Acceuil</a>
 				</li>
 
 				<li>
-					<a class="label1" data-label1="New" href="product.php">Books</a>
+					<a class="label1" data-label1="New" href="product.php">livres</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.php">Wishlist</a>
+					<a href="shoping-cart.php">Emprunts</a>
 				</li>
 				<li>
-					<a href="reservation.php">Reservation</a>
+					<a href="reservation.php">Reservations</a>
 				</li>
 				<li>
-					<a href="blog.php">Blog</a>
-				</li>
-
-				<li>
-					<a href="about.php">About</a>
+					<a href="about.php">À propos</a>
 				</li>
 
 				<li>
@@ -216,95 +212,6 @@ $data4 = $stmt2->fetchAll();
 			</div>
 		</div>
 	</header>
-
-	<!-- Cart -->
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
-
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Your Cart
-				</span>
-
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
-				</ul>
-
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.php"
-							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.php"
-							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -312,12 +219,6 @@ $data4 = $stmt2->fetchAll();
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
-
-			<a href="product.php" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
 			<span class="stext-109 cl4">
 				<?= $data["TITRE"] ?>
 			</span>
@@ -376,11 +277,6 @@ $data4 = $stmt2->fetchAll();
 							<?= $data["TITRE"] ?>
 
 						</h4>
-
-						<span class="mtext-106 cl2">
-							<?= $data["PRIX"] ?>
-						</span>
-
 						<p class="stext-102 cl3 p-t-23">
 							<?= $data["DESCRIPTION"] ?>
 						</p>
@@ -470,12 +366,7 @@ $data4 = $stmt2->fetchAll();
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional
-								information</a>
-						</li>
-
-						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Informations supplémentaires</a>
 						</li>
 					</ul>
 
@@ -534,94 +425,6 @@ $data4 = $stmt2->fetchAll();
 								</div>
 							</div>
 						</div>
-
-						<!-- - -->
-						<div class="tab-pane fade" id="reviews" role="tabpanel">
-							<div class="row">
-								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-									<div class="p-b-30 m-lr-15-sm">
-										<!-- Review -->
-										<div class="flex-w flex-t p-b-68">
-											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="images/avatar-01.jpg" alt="AVATAR">
-											</div>
-
-											<div class="size-207">
-												<div class="flex-w flex-sb-m p-b-17">
-													<span class="mtext-107 cl2 p-r-20">
-														Ariana Grande
-													</span>
-
-													<span class="fs-18 cl11">
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
-													</span>
-												</div>
-
-												<p class="stext-102 cl6">
-													Quod autem in homine praestantissimum atque optimum est, id
-													deseruit. Apud ceteros autem philosophos
-												</p>
-											</div>
-										</div>
-
-										<!-- Add review -->
-										<form class="w-full">
-											<h5 class="mtext-108 cl2 p-b-7">
-												Add a review
-											</h5>
-
-											<p class="stext-102 cl6">
-												Your email address will not be published. Required fields are marked *
-											</p>
-
-											<div class="flex-w flex-m p-t-50 p-b-23">
-												<span class="stext-102 cl3 m-r-16">
-													Your Rating
-												</span>
-
-												<span class="wrap-rating fs-18 cl11 pointer">
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<input class="dis-none" type="number" name="rating">
-												</span>
-											</div>
-
-											<div class="row p-b-25">
-												<div class="col-12 p-b-5">
-													<label class="stext-102 cl3" for="review">Your review</label>
-													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10"
-														id="review" name="review"></textarea>
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="name">Name</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name"
-														type="text" name="name">
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="email">Email</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email"
-														type="text" name="email">
-												</div>
-											</div>
-
-											<button
-												class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-												Submit
-											</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -636,7 +439,7 @@ $data4 = $stmt2->fetchAll();
 		<div class="container">
 			<div class="p-b-45">
 				<h3 class="ltext-106 cl5 txt-center">
-					Related Books
+					Livres associés
 				</h3>
 			</div>
 
@@ -664,10 +467,6 @@ $data4 = $stmt2->fetchAll();
 											class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 											<?= $data4[$i]["TITRE"] ?>
 										</a>
-
-										<span class="stext-105 cl3">
-											<?= $data4[$i]["PRIX"] ?>
-										</span>
 									</div>
 
 									<div class="block2-txt-child2 flex-r p-t-3">
@@ -694,33 +493,32 @@ $data4 = $stmt2->fetchAll();
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
 						Categories
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
+							<a href="product.php" class="stext-107 cl7 hov-cl1 trans-04">
+								litterature
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
+							<a href="product.php" class="stext-107 cl7 hov-cl1 trans-04">
+								histoire
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
+							<a href="product.php" class="stext-107 cl7 hov-cl1 trans-04">
+								horreur
 							</a>
 						</li>
-
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
+							<a href="product.php" class="stext-107 cl7 hov-cl1 trans-04">
+								science
 							</a>
 						</li>
 					</ul>
@@ -728,53 +526,29 @@ $data4 = $stmt2->fetchAll();
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Help
+						AIDE
 					</h4>
-
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shipping
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
-							</a>
-						</li>
-					</ul>
+					<p class="stext-107 cl7 size-201">
+					Des questions ? Appelez-nous au +212536533076
+					</p>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						GET IN TOUCH
+						Adresse
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at Rue de la liberté – Hay Al Hikma–Oujda–Maroc
+					Des questions ? Faites-le nous savoir à Rue de la liberté – Hay Al Hikma–Oujda–Maroc
 					</p>
 
 					<div class="p-t-27">
-						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR" target="_blank"
+						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR"
 							class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"
-							target="_blank">
+						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-instagram"></i>
 						</a>
 					</div>

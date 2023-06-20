@@ -17,7 +17,7 @@ $data = $result->fetchAll();
 <html lang="en">
 
 <head>
-	<title>Shoping Cart</title>
+	<title>Emprunts</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -290,7 +290,7 @@ $data = $result->fetchAll();
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+				Acceuil
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
