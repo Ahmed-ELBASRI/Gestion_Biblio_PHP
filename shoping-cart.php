@@ -15,7 +15,7 @@ $data = $stmt->fetchAll();
 <html lang="en">
 
 <head>
-	<title>Shoping Cart</title>
+	<title>Favorie</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -66,39 +66,26 @@ $data = $stmt->fetchAll();
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.php">Home</a>
+								<a href="index.php">Acceuil</a>
 							</li>
 
 							<li class="label1" data-label1="New">
-								<a href="product.php">Books</a>
+								<a href="product.php">Livres</a>
 							</li>
 
 							<li>
-								<a href="shoping-cart.php">Wishlist</a>
+								<a href="empruntlivre.php">Emprunts</a>
 							</li>
 							<li>
-								<a href="reservation.php">Reservation</a>
+								<a href="reservation.php">Reservations</a>
 							</li>
 							<li>
-								<a href="about.php">About</a>
+								<a href="about.php">À propos</a>
 							</li>
 
 							<li>
 								<a href="contact.php">Contact</a>
 							</li>
-							<?php
-
-							if (isset($_SESSION["role"])) {
-								$role = $_SESSION["role"];
-								if ($role == 'admin') {
-									?>
-									<li>
-										<a href="dashboard/public/index.php">dashboard</a>
-									</li>
-									<?php
-								}
-							}
-							?>
 						</ul>
 					</div>
 
@@ -168,22 +155,22 @@ $data = $stmt->fetchAll();
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.php">Home</a>
+					<a href="index.php">Acceuil</a>
 
 				</li>
 
 				<li >
-					<a class="label1" data-label1="New" href="product.php">Books</a>
+					<a class="label1" data-label1="New" href="product.php">Livres</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.php">Wishlist</a>
+					<a href="empruntlivre.php">Emprunts</a>
 				</li>
 				<li>
-					<a href="reservation.php">Reservation</a>
+					<a href="reservation.php">Reservations</a>
 				</li>
 				<li>
-					<a href="about.php">About</a>
+					<a href="about.php">À propos</a>
 				</li>
 
 				<li>
@@ -301,7 +288,7 @@ $data = $stmt->fetchAll();
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+				Acceuil
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
@@ -316,7 +303,7 @@ $data = $stmt->fetchAll();
 	<form class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+				<div class="col-lg-10 col-xl-10 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
@@ -325,8 +312,8 @@ $data = $stmt->fetchAll();
 									<th class="column-1">TITRE</th>
 									<th class="column-1">CATEGORIE</th>
 									<th class="column-1">AUTEUR</th>
-									<th class="column-1">More</th>
-									<th class="column-1">Delete</th>
+									<th class="column-1">Plus d'informations</th>
+									<th class="column-1">Supprimer</th>
 								</tr>
 								<?php for ($i = 0; $i < count($data); $i++) { ?>
 									<tr class="table_row">
@@ -378,33 +365,32 @@ $data = $stmt->fetchAll();
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
 						Categories
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
+							<a href="product.php" class="stext-107 cl7 hov-cl1 trans-04">
+								litterature
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
+							<a href="product.php" class="stext-107 cl7 hov-cl1 trans-04">
+								histoire
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
+							<a href="product.php" class="stext-107 cl7 hov-cl1 trans-04">
+								horreur
 							</a>
 						</li>
-
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
+							<a href="product.php" class="stext-107 cl7 hov-cl1 trans-04">
+								science
 							</a>
 						</li>
 					</ul>
@@ -412,53 +398,29 @@ $data = $stmt->fetchAll();
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Help
+						AIDE
 					</h4>
-
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shipping
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
-							</a>
-						</li>
-					</ul>
+					<p class="stext-107 cl7 size-201">
+					Des questions ? Appelez-nous au +212536533076
+					</p>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						GET IN TOUCH
+						Adresse
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at Rue de la liberté – Hay Al Hikma–Oujda–Maroc
+					Des questions ? Faites-le nous savoir à Rue de la liberté – Hay Al Hikma–Oujda–Maroc
 					</p>
 
 					<div class="p-t-27">
-						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR" target="_blank"
+						<a href="https://www.facebook.com/eheioujda/?locale=fr_FR"
 							class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"
-							target="_blank">
+						<a href="https://www.instagram.com/eheioujda/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-instagram"></i>
 						</a>
 					</div>

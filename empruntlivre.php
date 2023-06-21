@@ -1,9 +1,23 @@
-<?php session_start() ?>
-<!DOCTYPE html>
+<?php
+require("VerficationAuth.php");
+require("login-form-v1/login_v1/php/connection.php");
+$ID_PERSONNE = $_SESSION["ID_PERSONNE"];
+$query = "SELECT c.LIBELLE_CATEGORIE,L.TITRE,L.ID_LIVRE,L.COUVERTURE_MIN, GROUP_CONCAT(DISTINCT A.NOM_AUTEUR SEPARATOR ', ') AS NOM_AUTEUR,
+E.DATEEMPRUNTE,E.DATE_RETURN_EMPRUNTE,E.DATE_RETURN_REEL FROM categorie c inner join livre L  
+ON c.ID_CATEGORIE = L.ID_CATEGORIE  INNER JOIN rediger R 
+ON L.ID_LIVRE = R.ID_LIVRE INNER JOIN auteur A 
+ON R.ID_AUTEUR = A.ID_AUTEUR INNER JOIN reserverlivre re ON L.ID_LIVRE = re.ID_LIVRE
+INNER JOIN empruntlivre E on E.ID_RESERVATION=re.ID_RESERVATION
+INNER JOIN personne p on re.ID_PERSONNE=p.ID_PERSONNE
+WHERE p.ID_PERSONNE=$ID_PERSONNE
+GROUP BY L.ID_LIVRE";
+$result = $con->query($query);
+$data = $result->fetchAll();
+?>
 <html lang="en">
 
 <head>
-	<title>Contact</title>
+	<title>Shoping Cart</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -30,11 +44,6 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-		crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="css/annotation.css">
 
 </head>
@@ -45,7 +54,9 @@
 	<header class="header-v4">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
-			<div class="wrap-menu-desktop">
+			<!-- Topbar -->
+
+			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
@@ -65,7 +76,7 @@
 							</li>
 
 							<li>
-								<a href="empruntlivre.php">Emprunts</a>
+                            <a href="empruntlivre.php">Emprunts</a>
 							</li>
 							<li>
 								<a href="reservation.php">Reservations</a>
@@ -74,7 +85,7 @@
 								<a href="about.php">À propos</a>
 							</li>
 
-							<li class="active-menu">
+							<li>
 								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
@@ -85,8 +96,10 @@
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
+
 						<a href="shoping-cart.php">
-							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
+							<div 
+								class="icon-header-item cl2 hov-cl1 trans-04 p-l-10 p-r-11 icon-header-noti "
 								data-notify="0">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</div>
@@ -102,8 +115,6 @@
 					</div>
 				</nav>
 			</div>
-
-		</div>
 		</div>
 
 		<!-- Header Mobile -->
@@ -119,8 +130,9 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
-					<a href="shoping-cart.php"><i class="zmdi zmdi-favorite-outline"></i></a>
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+					data-notify="2">
+					<i class="zmdi zmdi-favorite-outline"></i>
 				</div>
 				<div class="p-l-15">
 					<div class="image-container">
@@ -146,9 +158,10 @@
 			<ul class="main-menu-m">
 				<li>
 					<a href="index.php">Acceuil</a>
+
 				</li>
 
-				<li>
+				<li >
 					<a class="label1" data-label1="New" href="product.php">Livres</a>
 				</li>
 
@@ -156,7 +169,7 @@
 					<a href="shoping-cart.php">Emprunts</a>
 				</li>
 				<li>
-					<a href="reservation.php">Reservation</a>
+					<a href="reservation.php">Reservations</a>
 				</li>
 				<li>
 					<a href="about.php">À propos</a>
@@ -273,99 +286,91 @@
 	</div>
 
 
-	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-1.jpg');">
-		<h2 class="ltext-105 cl0 txt-center">
-			Contact
-		</h2>
-	</section>
+	<!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				Emprunt
+			</span>
+		</div>
+	</div>
 
 
-	<!-- Content page -->
-	<section class="bg0 p-t-104 p-b-116">
+	<!-- Shoping Cart -->
+	<form class="bg0 p-t-75 p-b-85">
 		<div class="container">
-			<div class="flex-w flex-tr">
-				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form>
-						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							Envoyez-nous un message
-						</h4>
-
-						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email"
-								placeholder="Votre adresse e-mail">
-							<img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
-						</div>
-
-						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg"
-								placeholder="Comment pouvons-nous vous aider ?"></textarea>
-						</div>
-
-						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Envoyer
-						</button>
-					</form>
-				</div>
-
-				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
-					<div class="flex-w w-full p-b-42">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-map-marker"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Adresse
-							</span>
-
-							<p class="stext-115 cl6 size-213 p-t-18">
-								Hay El Qods Hay Al Hikma Maroc, Rue de la Liberté, Oujda
-							</p>
-						</div>
-					</div>
-
-					<div class="flex-w w-full p-b-42">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-phone-handset"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Telephone
-							</span>
-
-							<p class="stext-115 cl1 size-213 p-t-18">
-								+212536533076
-							</p>
-						</div>
-					</div>
-
-					<div class="flex-w w-full">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-envelope"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Adresse e-mail
-							</span>
-
-							<p class="stext-115 cl1 size-213 p-t-18">
-								ehei.oujda@gmail.com
-							</p>
+			<div class="row">
+				<div class="col-lg-10 col-xl-12 m-lr-auto m-b-50">
+					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+							<table class="table-shopping-cart">
+								<tr class="table_head">
+									<th class="column-1">Livre</th>
+									<th class="column-1">TITRE</th>
+									<th class="column-1">CATEGORIE</th>
+									<th class="column-1">AUTEUR</th>
+                                    <th class="column-1">Date d'emprunt</th>
+                                    <th class="column-1">Date fin d'emprunt</th>
+									<th class="column-1">Plus d'informations</th>
+									<th class="column-1">Statue</th>
+								</tr>
+								<?php for ($i = 0; $i < count($data); $i++) { ?>
+									<tr class="table_row">
+										<td class="column-1">
+											<div class="how-itemcart1">
+												<img src="<?= $data[$i]["COUVERTURE_MIN"] ?>" alt="IMG">
+											</div>
+										</td>
+										<td class="column-1">
+											<?= $data[$i]["TITRE"] ?>
+										</td>
+										<td class="column-1">
+											<?= $data[$i]["LIBELLE_CATEGORIE"] ?>
+										</td>
+										<td class="column-1">
+											<?= $data[$i]["NOM_AUTEUR"] ?>
+										</td>
+                                        <td class="column-1">
+											<?= $data[$i]["DATEEMPRUNTE"] ?>
+										</td>
+                                        <td class="column-1">
+											<?= $data[$i]["DATE_RETURN_EMPRUNTE"] ?>
+										</td>
+										<td class="column-1">
+											<div class="p-l-15">
+												<div class="image-container">
+													<a href="product-detail.php?id=<?= $data[$i]["ID_LIVRE"] ?>">
+														<img src="images/more.png" alt="more informations"
+															class="annotated-image">
+													</a>
+												</div>
+										</td>
+										<td class="column-1">
+                                            <?php 
+                                                if($data[$i]["DATE_RETURN_REEL"]==NULL){
+                                                    ?><p>Non rendu</p><?php
+                                                }else{
+                                                    ?><p>Rendu</p><?php 
+                                                }
+                                            ?>
+										</td>
+									</tr>
+								<?php } ?>
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</form>
 
 
-	<!-- Map iframe-->
-	<div class="map">
-	<iframe style="width:100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.8979142713342!2d-1.909929685145988!3d34.65728098044576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd787ca7abf0facf%3A0x5ea075eea8038ba1!2sE.H.E.I+-+Ecole+des+Hautes+Etudes+d'Ing%C3%A9nierie!5e0!3m2!1sfr!2s!4v1490178341380" class="col-xs-10" height="450" frameborder="0" allowfullscreen=""></iframe>
-    </div>
+
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -442,7 +447,7 @@
 							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
 								placeholder="email@example.com" value=<?php
 
-								//session_open();
+								//	session_open();
 								$email = $_SESSION["email"];
 								echo "$email";
 								?>>
@@ -466,7 +471,6 @@
 			<p class="stext-107 cl6 txt-center">
 				© Copyrights 2023 EHEI. All Rights Reserved.
 			</p>
-		</div>
 		</div>
 	</footer>
 
@@ -515,10 +519,8 @@
 		});
 	</script>
 	<!--===============================================================================================-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-	<script src="js/map-custom.js"></script>
-	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
 </body>
 
 </html>
