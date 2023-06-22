@@ -44,9 +44,83 @@ if (isset($_POST["email"])) {
 		header("location: formLogin.php");
 		exit();
 	}
-} */
+} */		session_start();
+
 	if(isset($_GET["code"])){
-		echo $_GET["code"];
+
+		$code=$_SESSION["code"];
+		
+		
+
+		if($_GET["code"] ==$code ){
+
+			
+			$_SESSION["verifier"]=1;
+
+		/*	$query="update";
+                $statement=$conn->prepare($query);
+                $statement->execute(array("login"=>$login,"pass"=>$pass));
+                $data=$statement->fetchAll();
+                if(count($data)==0){
+                    echo "something is wrong";
+                }
+                else{
+                    header('location:register.php');
+                }*/
+		}
+		else {
+			
+			$_SESSION["verifier"]=0;
+
+		}
+
+	}
+	if(isset($_POST["pass"])){
+		
+
+		if(isset($_SESSION["verifier"])){
+
+
+			if($_SESSION["verifier"]==1){
+
+				$pass=$_POST["pass"];
+				$passConf=$_POST["passConf"];
+				$email=$_SESSION["email"];
+				$hashedPass=md5($pass);
+
+				
+				
+				
+				if($pass!=$passConf){
+					header("location:formPassChange.php");
+					exit;
+				}
+				require("php/connection.php");
+				$query = "UPDATE personne SET PASSWORD = :password WHERE EMAIL = :email";
+				$statement = $con->prepare($query);
+
+// Bind the parameters
+				$statement->bindParam(":password", $hashedPass);
+				$statement->bindParam(":email", $email);
+
+// Execute the statement and check for errors
+if ($statement->execute()) {
+    echo "Update successful!";
+} else {
+    // Display the error message
+    echo "Update failed: " . $statement->errorInfo()[2];
+}
+
+
+				session_destroy();
+
+				header("location:formLogin.php");
+				exit;
+
+			}
+
+
+		}
 	}
 ?>
 <!DOCTYPE html>

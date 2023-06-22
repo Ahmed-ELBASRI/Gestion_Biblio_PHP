@@ -1,5 +1,12 @@
 <?php
 
+if(isset($_POST["email"])){
+
+   $email=$_POST["email"];
+   session_start();
+   $_SESSION["email"]=$email;
+}
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 /* Exception class. */
@@ -20,7 +27,7 @@ try {
    $mail->SMTPSecure='tls';
    $mail->Port=587;
    /* Set the mail sender. */
-   $mail->addAddress('ayoubbale@hotmail.com');
+   $mail->addAddress($email);
    /* Add a recipient. */
    $mail->setFrom('eheieheiehei049@gmail.com');
    /* Set the subject. */
@@ -35,7 +42,7 @@ try {
 $mail->Body=$htmlContent;
 $mail->AltBody = 'There is a great disturbance in the Force.';
    /* Finally send the mail. */
-   $mail->SMTPDebug = 2;
+  // $mail->SMTPDebug = 2;
 
    $mail->send();
 }

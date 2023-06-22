@@ -1,6 +1,9 @@
 <?php
 
-        $code=1;
+        $code=rand(1,10000);
+        
+        $_SESSION["code"]=$code;
+    
 ?>
 <!DOCTYPE html>
 <html>
