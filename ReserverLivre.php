@@ -21,10 +21,10 @@
     $query="select * from ReserverLivre where ID_PERSONNE=:ID_PERSONNE and archive=0";
     $statement=$con->prepare($query);
     $statement->execute(array("ID_PERSONNE"=>$ID_PERSONNE));
-    $data=$statement->fetch();
+    $data=$statement->fetchAll();
     if(!empty($data)){
         echo "you have a reservation already ";
-        exit;
+        exit();
     }
 
 

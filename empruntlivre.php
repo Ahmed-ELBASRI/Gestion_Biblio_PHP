@@ -3,7 +3,7 @@ require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
 $ID_PERSONNE = $_SESSION["ID_PERSONNE"];
 $query = "SELECT c.LIBELLE_CATEGORIE,L.TITRE,L.ID_LIVRE,L.COUVERTURE_MIN, GROUP_CONCAT(DISTINCT A.NOM_AUTEUR SEPARATOR ', ') AS NOM_AUTEUR,
-E.DATEEMPRUNTE,E.DATE_RETURN_EMPRUNTE,E.DATE_RETURN_REEL FROM categorie c inner join livre L  
+E.DATEEMPRUNTE,E.DATE_RETURN_EMPRUNTE,E.DATE_RETURN_EMPRUNTE FROM categorie c inner join livre L  
 ON c.ID_CATEGORIE = L.ID_CATEGORIE  INNER JOIN rediger R 
 ON L.ID_LIVRE = R.ID_LIVRE INNER JOIN auteur A 
 ON R.ID_AUTEUR = A.ID_AUTEUR INNER JOIN reserverlivre re ON L.ID_LIVRE = re.ID_LIVRE
@@ -352,7 +352,8 @@ $data = $result->fetchAll();
 										</td>
 										<td class="column-1">
                                             <?php 
-                                                if($data[$i]["DATE_RETURN_REEL"]==NULL){
+
+                                                if(!$data[$i]["DATE_RETURN_EMPRUNTE"]){
                                                     ?><p>Non rendu</p><?php
                                                 }else{
                                                     ?><p>Rendu</p><?php 
