@@ -1,6 +1,8 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
+require("changesession.php");
+
 $query = "SELECT c.LIBELLE_CATEGORIE,l.TITRE,r.ID_LIVRE,l.COUVERTURE_MIN,r.DATERESERVATION,r.ETAT FROM categorie c inner join livre l on c.ID_CATEGORIE=l.ID_CATEGORIE inner join reserverlivre r on l.ID_LIVRE=r.ID_LIVRE WHERE R.ID_PERSONNE = :ID_PERSONNE 
 ORDER BY r.DATERESERVATION DESC";
 $ID_PERSONNE = $_SESSION["ID_PERSONNE"];

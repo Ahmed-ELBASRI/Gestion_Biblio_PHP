@@ -1,6 +1,8 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
+require("changesession.php");
+
 if (isset($_GET["search"])) {
 	$search = $_GET["search"];
 	if (!empty($search)) {

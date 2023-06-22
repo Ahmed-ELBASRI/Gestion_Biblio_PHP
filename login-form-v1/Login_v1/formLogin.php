@@ -28,6 +28,7 @@ if (isset($_POST["email"])) {
 			$_SESSION["role"]=$data["libelle"];
 			$_SESSION["newsletter"]=$data["newsletter"];
 			$_SESSION["ID_PERSONNE"]=$data["ID_PERSONNE"];
+			$_SESSION["password"]=$pass;
 			if(empty($data["DATERESERVATION"]) || $data["archive"] == 1){
 				$_SESSION["livreReserver"]=0;
 			}
@@ -37,6 +38,9 @@ if (isset($_POST["email"])) {
 			}else{
 				$_SESSION["livreReserver"]=1;
 			}
+
+			// change session
+			require "../../changesession.php";
 			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();

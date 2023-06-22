@@ -1,6 +1,8 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
+require("changesession.php");
+
 $ID_PERSONNE = $_SESSION["ID_PERSONNE"];
 $query = "SELECT c.LIBELLE_CATEGORIE,L.TITRE,L.ID_LIVRE,L.COUVERTURE_MIN, GROUP_CONCAT(DISTINCT A.NOM_AUTEUR SEPARATOR ', ') AS NOM_AUTEUR,
 E.DATEEMPRUNTE,E.DATE_RETURN_EMPRUNTE,E.DATE_RETURN_EMPRUNTE FROM categorie c inner join livre L  

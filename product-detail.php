@@ -1,6 +1,7 @@
 <?php
 require("VerficationAuth.php");
 require("login-form-v1/login_v1/php/connection.php");
+require("changesession.php");
 $id = $_GET["id"];
 $query = "select * from livre where ID_LIVRE = :id";
 $stmt = $con->prepare($query);
