@@ -303,7 +303,7 @@ $data4 = $stmt2->fetchAll();
 									var link = document.getElementById("ReserverLink");
 									link.addEventListener("click", function (event) {
 										event.preventDefault();
-										swal("you have already a reservation ");
+										swal("vous avez deja une reservation");
 									});
 								</script>
 							<?php } else {

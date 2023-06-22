@@ -510,8 +510,7 @@ if (!empty($data3)) {
 					$Stm = $con->query($query);
 					$data1 = $Stm->fetchAll(PDO::FETCH_ASSOC);
 					//print_r($data1);
-					//$data=$statement->fetchAll(PDO::FETCH_ASSOC);
-					
+					//$data=$statement->fetchAll(PDO::FETCH_ASSOC);					
 					if (!empty($data1)) {
 
 						for ($i = 0; $i < count($data1); $i++) {
