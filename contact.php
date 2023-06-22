@@ -1,4 +1,18 @@
-<?php session_start() ?>
+<?php session_start();
+
+
+	/*	if(isset($_GET["email"]) && isset($_GET["msg"])){
+
+			$email=$_GET["email"];
+			$msg=$_GET["msg"];
+			if(!empty($email) && !empty($msg)){
+				// envoyer dans email
+
+			}
+		}*/
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -299,7 +313,7 @@
 
 						<div class="bor8 m-b-30">
 							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg"
-								placeholder="Comment pouvons-nous vous aider ?"></textarea>
+								placeholder="Comment pouvons-nous vous aider ?" maxlength="255"></textarea>
 						</div>
 
 						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">

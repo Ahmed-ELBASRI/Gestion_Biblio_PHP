@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 if(isset($_SESSION["email"])){
 	header("location: ../../index.php");
 	exit();
@@ -14,21 +14,18 @@ if (isset($_POST["email"])) {
 		INNER JOIN personne p ON s.id = p.id_statue
 		LEFT JOIN reserverlivre e ON p.ID_PERSONNE = e.ID_PERSONNE
 		WHERE  p.email LIKE :email AND p.password LIKE :pass";
-		/*$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";*/
+		
 		require("php/connection.php");
 		$stmt = $con->prepare($query);
 		$stmt->execute(array(":email" => $email, ":pass" => $pass));
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
-		// print_r($data);
-		// print_r($data);
-		// exit();
+		
 		if (!empty($data)) {
 
 			$_SESSION["email"]=$email;
 			$_SESSION["role"]=$data["libelle"];
 			$_SESSION["newsletter"]=$data["newsletter"];
 			$_SESSION["ID_PERSONNE"]=$data["ID_PERSONNE"];
-			$_SESSION["password"]=$pass;
 			if(empty($data["DATERESERVATION"]) || $data["archive"] == 1){
 				$_SESSION["livreReserver"]=0;
 			}
@@ -38,9 +35,6 @@ if (isset($_POST["email"])) {
 			}else{
 				$_SESSION["livreReserver"]=1;
 			}
-
-			// change session
-			require "../../changesession.php";
 			// print_r($_SESSION);
 			header("location: ../../index.php");
 			exit();
@@ -50,7 +44,84 @@ if (isset($_POST["email"])) {
 		header("location: formLogin.php");
 		exit();
 	}
+} */		session_start();
+
+	if(isset($_GET["code"])){
+
+		$code=$_SESSION["code"];
+		
+		
+
+		if($_GET["code"] ==$code ){
+
+			
+			$_SESSION["verifier"]=1;
+
+		/*	$query="update";
+                $statement=$conn->prepare($query);
+                $statement->execute(array("login"=>$login,"pass"=>$pass));
+                $data=$statement->fetchAll();
+                if(count($data)==0){
+                    echo "something is wrong";
+                }
+                else{
+                    header('location:register.php');
+                }*/
+		}
+		else {
+			
+			$_SESSION["verifier"]=0;
+
+		}
+
+	}
+	if(isset($_POST["pass"])){
+		
+
+		if(isset($_SESSION["verifier"])){
+
+
+			if($_SESSION["verifier"]==1){
+
+				$pass=$_POST["pass"];
+				$passConf=$_POST["passConf"];
+				$email=$_SESSION["email"];
+				$hashedPass=md5($pass);
+
+				
+				
+				
+				if($pass!=$passConf){
+					header("location:formPassChange.php");
+					exit;
+				}
+				require("php/connection.php");
+				$query = "UPDATE personne SET PASSWORD = :password WHERE EMAIL = :email";
+				$statement = $con->prepare($query);
+
+// Bind the parameters
+				$statement->bindParam(":password", $hashedPass);
+				$statement->bindParam(":email", $email);
+
+// Execute the statement and check for errors
+if ($statement->execute()) {
+    echo "Update successful!";
+} else {
+    // Display the error message
+    echo "Update failed: " . $statement->errorInfo()[2];
 }
+
+
+				session_destroy();
+
+				header("location:formLogin.php");
+				exit;
+
+			}
+
+
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,19 +158,20 @@ if (isset($_POST["email"])) {
 
 				<form class="login100-form validate-form" action="#" method="post">
 					<span class="login100-form-title">
-						Espace Bibliothèque
+						Reset Password
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+					
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Mot de passe">
+						<input class="input100" type="password" name="pass" placeholder="New Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate="Confirm Password is required">
+						<input class="input100" type="password" name="passConf" placeholder="Confirm Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -108,10 +180,9 @@ if (isset($_POST["email"])) {
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Se connecter
+							Confirm
 						</button>
 					</div>
-					<h3><a href="forgetpass.php">Forget Password</a></h3>
 
 					<!-- <div class="text-center p-t-12">
 						<span class="txt1">

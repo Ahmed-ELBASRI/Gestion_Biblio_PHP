@@ -1,57 +1,6 @@
-<?php
-session_start();
-if(isset($_SESSION["email"])){
-	header("location: ../../index.php");
-	exit();
-}
-if (isset($_POST["email"])) {
-	$email = $_POST["email"];
-	$pass = $_POST["pass"];
-	if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($pass)) {
-		$pass = md5($pass);
-		$query="SELECT p.*, s.libelle, e.DATERESERVATION, e.archive
-		FROM statut s
-		INNER JOIN personne p ON s.id = p.id_statue
-		LEFT JOIN reserverlivre e ON p.ID_PERSONNE = e.ID_PERSONNE
-		WHERE  p.email LIKE :email AND p.password LIKE :pass";
-		/*$query = "select p.*,s.libelle from PERSONNE p join statut s on p.id_statue = s.id where p.email like :email and p.password like :pass";*/
-		require("php/connection.php");
-		$stmt = $con->prepare($query);
-		$stmt->execute(array(":email" => $email, ":pass" => $pass));
-		$data = $stmt->fetch(PDO::FETCH_ASSOC);
-		// print_r($data);
-		// print_r($data);
-		// exit();
-		if (!empty($data)) {
 
-			$_SESSION["email"]=$email;
-			$_SESSION["role"]=$data["libelle"];
-			$_SESSION["newsletter"]=$data["newsletter"];
-			$_SESSION["ID_PERSONNE"]=$data["ID_PERSONNE"];
-			$_SESSION["password"]=$pass;
-			if(empty($data["DATERESERVATION"]) || $data["archive"] == 1){
-				$_SESSION["livreReserver"]=0;
-			}
-			else if($data["archive"] == 0){
-				$_SESSION["livreReserver"]=1;
-				
-			}else{
-				$_SESSION["livreReserver"]=1;
-			}
 
-			// change session
-			require "../../changesession.php";
-			// print_r($_SESSION);
-			header("location: ../../index.php");
-			exit();
-		}
-		echo "no data";
-		
-		header("location: formLogin.php");
-		exit();
-	}
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,33 +34,27 @@ if (isset($_POST["email"])) {
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="#" method="post">
+				<form class="login100-form validate-form" action="test2.php" method="post">
 					<span class="login100-form-title">
-						Espace Bibliothèque
+						Reset password
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+					
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Mot de passe">
+						<input class="input100" type="text" name="email" placeholder="Saisir Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+              
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Se connecter
+							Confirm
 						</button>
 					</div>
-					<h3><a href="forgetpass.php">Forget Password</a></h3>
 
 					<!-- <div class="text-center p-t-12">
 						<span class="txt1">
